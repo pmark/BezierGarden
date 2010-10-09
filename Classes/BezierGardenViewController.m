@@ -7,6 +7,7 @@
 //
 
 #import "BezierGardenViewController.h"
+#import "DotView.h"
 
 @implementation BezierGardenViewController
 
@@ -25,17 +26,54 @@
 - (void) loadView 
 {
     sm3dar = [SM3DAR_Controller sharedController];
+    sm3dar.delegate = self;
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     self.view = sm3dar.view;
 }
 
+- (void) addDotAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z
+{
+    // Create point.
+    SM3DAR_Fixture *p = [[SM3DAR_Fixture alloc] init];
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+    DotView *dotView = [[DotView alloc] init];
+
+    // Give the point a view.
+    dotView.point = p;
+    p.view = dotView;
+    [dotView release];
+    
+    // Add point to 3DAR scene.
+    [sm3dar addPointOfInterest:p];
+    [p release];
+}
+
+- (SM3DAR_Fixture*) addFixtureWithView:(SM3DAR_PointView*)pointView
+{
+    // create point
+    SM3DAR_Fixture *point = [[SM3DAR_Fixture alloc] init];
+    
+    // give point a view
+    point.view = pointView;  
+    
+    // add point to 3DAR scene
+    [[SM3DAR_Controller sharedController] addPointOfInterest:point];
+    return [point autorelease];
+}
+
+- (void) loadPointsOfInterest
+{
+    NSLog(@"loadPointsOfInterest");
+
+    [self addDotAtX:0 Y:100 Z:0];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self loadPointsOfInterest];
 }
-*/
 
 
 /*

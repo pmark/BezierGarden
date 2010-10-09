@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SM3DAR.h"
 
-@interface BezierGardenViewController : UIViewController 
+@interface BezierGardenViewController : UIViewController <SM3DAR_Delegate>
 {
 	SM3DAR_Controller *sm3dar;
 }

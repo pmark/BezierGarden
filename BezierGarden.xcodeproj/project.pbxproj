@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* BezierGardenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* BezierGardenViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* BezierGardenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* BezierGardenViewController.m */; };
+		4D0AF202126011D400B6ACE4 /* DotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0AF201126011D400B6ACE4 /* DotView.m */; };
 		4DE67831125CBA8C0080EEB0 /* lib3DAR_v4_0_6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE67830125CBA8C0080EEB0 /* lib3DAR_v4_0_6.a */; };
 		4DE67846125CBAC70080EEB0 /* 3dar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE67843125CBAC70080EEB0 /* 3dar.plist */; };
 		4DE67847125CBAC70080EEB0 /* 3dar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE67844125CBAC70080EEB0 /* 3dar_logo.png */; };
@@ -75,6 +76,8 @@
 		28D7ACF70DDB3853001CB0EB /* BezierGardenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierGardenViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* BezierGarden_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierGarden_Prefix.pch; sourceTree = "<group>"; };
+		4D0AF200126011D400B6ACE4 /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
+		4D0AF201126011D400B6ACE4 /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
 		4DE67830125CBA8C0080EEB0 /* lib3DAR_v4_0_6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = lib3DAR_v4_0_6.a; sourceTree = "<group>"; };
 		4DE67837125CBAA00080EEB0 /* SM3DAR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SM3DAR.h; sourceTree = "<group>"; };
 		4DE67843125CBAC70080EEB0 /* 3dar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3dar.plist; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4D0AF200126011D400B6ACE4 /* DotView.h */,
+				4D0AF201126011D400B6ACE4 /* DotView.m */,
 				1D3623240D0F684500981E51 /* BezierGardenAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BezierGardenAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* BezierGardenViewController.h */,
@@ -529,6 +534,7 @@
 				4DE67940125CBE9F0080EEB0 /* DDXMLNode.m in Sources */,
 				4DE67941125CBE9F0080EEB0 /* NSStringAdditions.m in Sources */,
 				4DE67944125CBFD40080EEB0 /* APIClient.m in Sources */,
+				4D0AF202126011D400B6ACE4 /* DotView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
