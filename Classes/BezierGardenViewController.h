@@ -14,5 +14,7 @@
 	SM3DAR_Controller *sm3dar;
 }
 
+- (void) screenTouched:(CGPoint)p;
+
 @end
 

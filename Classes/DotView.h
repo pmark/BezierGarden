@@ -6,7 +6,7 @@
 #import <UIKit/UIKit.h>
 #import "SM3DAR.h"
 
-@interface DotView : SM3DAR_PointView
+@interface DotView : SM3DAR_IconMarkerView
 {
 }
 

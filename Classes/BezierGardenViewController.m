@@ -9,6 +9,9 @@
 #import "BezierGardenViewController.h"
 #import "DotView.h"
 
+#define MAX_CAMERA_ALTITUDE_METERS 80.0
+#define ALTITUDE_INTERVAL_METERS 2
+
 @implementation BezierGardenViewController
 
 
@@ -35,6 +38,12 @@
 {
     // Create point.
     SM3DAR_Fixture *p = [[SM3DAR_Fixture alloc] init];
+    
+    Coord3D coord = {
+        x, y, z
+    };
+    
+    p.worldPoint = coord;
 
     DotView *dotView = [[DotView alloc] init];
 
@@ -48,41 +57,18 @@
     [p release];
 }
 
-- (SM3DAR_Fixture*) addFixtureWithView:(SM3DAR_PointView*)pointView
-{
-    // create point
-    SM3DAR_Fixture *point = [[SM3DAR_Fixture alloc] init];
-    
-    // give point a view
-    point.view = pointView;  
-    
-    // add point to 3DAR scene
-    [[SM3DAR_Controller sharedController] addPointOfInterest:point];
-    return [point autorelease];
-}
-
 - (void) loadPointsOfInterest
 {
     NSLog(@"loadPointsOfInterest");
 
-    [self addDotAtX:0 Y:100 Z:0];
+    [self addDotAtX:15 Y:10 Z:20];
     
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     [self loadPointsOfInterest];
 }
-
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -99,6 +85,29 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];    
+    CGPoint touchPoint = [touch locationInView:self.view];
+    [self screenTouched:touchPoint];    
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+
+    [self screenTouched:touchPoint];    
+}
+
+#pragma mark Touches
+
+- (void) screenTouched:(CGPoint)p {
+    CGFloat max = MAX_CAMERA_ALTITUDE_METERS;
+    CGFloat altitude = (p.y / 480.0) * max;
+    
+    sm3dar.cameraAltitudeMeters = altitude;
 }
 
 @end
