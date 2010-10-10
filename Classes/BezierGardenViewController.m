@@ -14,17 +14,22 @@
 
 @implementation BezierGardenViewController
 
+@synthesize elevationGrid;
+
+- (void)dealloc 
+{
+    self.elevationGrid = nil;
+    [super dealloc];
+}
 
 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+{
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+    {
     }
     return self;
 }
-*/
 
 - (void) loadView 
 {
@@ -67,7 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];    
-    [self loadPointsOfInterest];
+//    [self loadPointsOfInterest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,11 +85,6 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 
@@ -109,5 +109,19 @@
     
     sm3dar.cameraAltitudeMeters = altitude;
 }
+
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"[BGVC] New location: %@", newLocation);
+    
+    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+
+    [manager stopUpdatingLocation];
+}
+
 
 @end
