@@ -75,13 +75,14 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
                             samples];
     
 	// Fetch the elevations from google as JSON.
+    NSError *error;
     NSLog(@"[EG] URL:\n\n%@\n\n", requestURI);
 	NSString *responseJSON = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestURI] 
-                                                  encoding:NSUTF8StringEncoding error:nil];    
+                                                  encoding:NSUTF8StringEncoding error:&error];    
 
     if ([responseJSON length] == 0)
     {
-        NSLog(@"[EG] Empty response.");
+        NSLog(@"[EG] Empty response. %@", [error localizedDescription]);
         return nil;
     }
     
@@ -139,22 +140,26 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 {
     CLLocationDegrees latitude, longitude;
     
+    // Latitude
     if (northMeters == 0) 
     {
         latitude = origin.coordinate.latitude;
     }
     else
     {
-        
+        CGFloat deltaLat = atanf( (ELEVATION_LINE_LENGTH/2) / [self ellipsoidRadius:origin.coordinate.latitude]);
+     	latitude = origin.coordinate.latitude + deltaLat;
     }
     
+    // Longitude
     if (eastMeters == 0) 
     {
         longitude = origin.coordinate.longitude;
     }
     else
     {
-        
+        CGFloat deltaLng = atanf((ELEVATION_LINE_LENGTH/2) / [self longitudinalRadius:origin.coordinate.latitude]);
+     	longitude = origin.coordinate.longitude + deltaLng;
     }
     
 	return [[[CLLocation alloc] initWithLatitude:latitude longitude:longitude] autorelease];
@@ -210,5 +215,13 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     
 	return sqrtf( (part1 + part2) / (part3 + part4));
 }
+
+- (CGFloat) longitudinalRadius:(CLLocationDegrees)latitude
+{
+    CGFloat phi = latitude * M_PI / 180.0;
+    
+    return cosf(phi) * [self ellipsoidRadius:latitude];    
+}
+
 
 @end

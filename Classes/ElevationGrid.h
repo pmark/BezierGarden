@@ -25,5 +25,6 @@
 - (CLLocation*) locationAtDistanceInMetersNorth:(CLLocationDistance)northMeters East:(CLLocationDistance)eastMeters fromLocation:(CLLocation*)origin;
 - (void) buildArray;
 - (CGFloat) ellipsoidRadius:(CLLocationDegrees)latitude;
+- (CGFloat) longitudinalRadius:(CLLocationDegrees)latitude;
 
 @end
