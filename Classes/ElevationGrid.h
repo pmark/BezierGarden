@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-#define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%f,%f|%f,%f&samples=%i&sensor=false"
-#define ELEVATION_PATH_SAMPLES 5
-#define ELEVATION_LINE_LENGTH 5000
+#define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%@&samples=%i&sensor=false"
+#define ELEVATION_PATH_SAMPLES 3
+#define ELEVATION_LINE_LENGTH 1000
 
 @interface ElevationGrid : NSObject 
 {
@@ -26,5 +26,7 @@
 - (void) buildArray;
 - (CGFloat) ellipsoidRadius:(CLLocationDegrees)latitude;
 - (CGFloat) longitudinalRadius:(CLLocationDegrees)latitude;
+- (NSString *) urlEncode:(NSString*)unencoded;
+- (void) printElevationData;
 
 @end

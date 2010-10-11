@@ -61,28 +61,32 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 
 - (NSArray*) googlePathElevationBetween:(CLLocation*)point1 and:(CLLocation*)point2 samples:(NSInteger)samples
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     NSLog(@"[EG] Fetching elevation data...");
     
     // Build the request.
-    NSString *requestURI = [NSString stringWithFormat:
-                            GOOGLE_ELEVATION_API_URL_FORMAT,
+    NSString *pathString = [NSString stringWithFormat:
+                            @"%f,%f|%f,%f",
                             point1.coordinate.latitude, 
                             point1.coordinate.longitude,
                             point2.coordinate.latitude, 
-                            point2.coordinate.longitude,
+                            point2.coordinate.longitude];
+    
+    NSString *requestURI = [NSString stringWithFormat:
+                            GOOGLE_ELEVATION_API_URL_FORMAT,
+                            [self urlEncode:pathString],
                             samples];
     
 	// Fetch the elevations from google as JSON.
     NSError *error;
     NSLog(@"[EG] URL:\n\n%@\n\n", requestURI);
+
 	NSString *responseJSON = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestURI] 
                                                   encoding:NSUTF8StringEncoding error:&error];    
 
+    
     if ([responseJSON length] == 0)
     {
-        NSLog(@"[EG] Empty response. %@", [error localizedDescription]);
+        NSLog(@"[EG] Empty response. %@, %@", [error localizedDescription], [error userInfo]);
         return nil;
     }
     
@@ -122,14 +126,15 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     NSLog(@"RESULTS:\n\n%@", results);
     
     NSMutableArray *pathElevations = [NSMutableArray arrayWithCapacity:[results count]];
+    NSString *elevation;
     
     for (NSDictionary *oneResult in results)
     {
-        NSString *str = [oneResult objectForKey:@"elevation"];        
-        [pathElevations addObject:str];
+        
+        elevation = [oneResult objectForKey:@"elevation"];        
+        NSNumber *elevationNumber = [NSNumber numberWithDouble:[elevation doubleValue]];
+        [pathElevations addObject:elevationNumber];
     }
-    
-    [pool release];
     
     return pathElevations;
 }
@@ -147,7 +152,8 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     }
     else
     {
-        CGFloat deltaLat = atanf( (ELEVATION_LINE_LENGTH/2) / [self ellipsoidRadius:origin.coordinate.latitude]);
+        CGFloat deltaLat = northMeters / 10000.0;
+//        CGFloat deltaLat = atanf( (ELEVATION_LINE_LENGTH/2) / [self ellipsoidRadius:origin.coordinate.latitude]);
      	latitude = origin.coordinate.latitude + deltaLat;
     }
     
@@ -158,7 +164,8 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     }
     else
     {
-        CGFloat deltaLng = atanf((ELEVATION_LINE_LENGTH/2) / [self longitudinalRadius:origin.coordinate.latitude]);
+        CGFloat deltaLng = eastMeters / 10000.0;
+//        CGFloat deltaLng = atanf((ELEVATION_LINE_LENGTH/2) / [self longitudinalRadius:origin.coordinate.latitude]);
      	longitude = origin.coordinate.longitude + deltaLng;
     }
     
@@ -167,9 +174,17 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 
 - (CLLocation*) pathEndpointFrom:(CLLocation*)startPoint
 {
-    return [self locationAtDistanceInMetersNorth:-ELEVATION_LINE_LENGTH
-                                            East:0
-                                    fromLocation:startPoint];
+    CLLocationCoordinate2D endPoint;
+    CGFloat delta = (ELEVATION_LINE_LENGTH / 10000.0);
+    endPoint.latitude = startPoint.coordinate.latitude - delta;
+    endPoint.longitude = startPoint.coordinate.longitude;
+
+    return [[[CLLocation alloc] initWithCoordinate:endPoint altitude:0 horizontalAccuracy:-1 verticalAccuracy:-1 timestamp:nil] autorelease];
+    
+    
+//    return [self locationAtDistanceInMetersNorth:-ELEVATION_LINE_LENGTH
+//                                            East:0
+//                                    fromLocation:startPoint];
 }
 
 - (void) buildArray
@@ -183,11 +198,14 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
         // Make N/S lines.
         CGFloat eastOffsetMeters = eastStartOffsetMeters + (i * segmentLengthMeters);
         
+        NSLog(@"Moving east: %.0f m", eastOffsetMeters);
         CLLocation *point1 = [self locationAtDistanceInMetersNorth:northStartOffsetMeters
                                                               East:eastOffsetMeters
                                                       fromLocation:gridOrigin];
         
         CLLocation *point2 = [self pathEndpointFrom:point1];
+        
+        NSLog(@"Getting elevations between %@ and %@", point1, point2);
         
         NSArray *elevations = [self googlePathElevationBetween:point1 
                                                            and:point2 
@@ -195,10 +213,13 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
-            NSString *elevationString = [elevations objectAtIndex:i];
-            elevationData[i][j] = [elevationString doubleValue];
+            NSNumber *elevationNumber = [elevations objectAtIndex:j];
+            elevationData[i][j] = [elevationNumber doubleValue];
+            NSLog(@"i:%i  j:%i  elev:%.0f (%@)", i, j, elevationData[i][j], elevationNumber);
         }
     }
+
+	[self printElevationData];
 }
 
 - (CGFloat) ellipsoidRadius:(CLLocationDegrees)latitude
@@ -221,6 +242,37 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     CGFloat phi = latitude * M_PI / 180.0;
     
     return cosf(phi) * [self ellipsoidRadius:latitude];    
+}
+
+- (NSString *) urlEncode:(NSString*)unencoded
+{
+	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
+                               	NULL,
+                        		(CFStringRef)unencoded,
+                                NULL,
+                                (CFStringRef)@"!*'();:@&=+$,/?%#[]|",
+                                kCFStringEncodingUTF8);
+}
+
+- (void) printElevationData
+{
+    CGFloat len = ELEVATION_LINE_LENGTH / 1000.0;
+    NSMutableString *str = [NSMutableString stringWithFormat:@"\n\n%i elevation samples in a %.1f sq km grid\n", ELEVATION_PATH_SAMPLES, len, len];
+    
+    for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
+    {
+        [str appendString:@"\n"];
+
+        for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
+        {
+            [str appendFormat:@"%.0f ", elevationData[j][i]];
+        }
+
+    }
+
+    [str appendString:@"\n"];
+
+    NSLog(str, 0);
 }
 
 
