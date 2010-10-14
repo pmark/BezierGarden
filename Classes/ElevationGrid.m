@@ -229,7 +229,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 {    
     CGFloat halfLineLength = ELEVATION_LINE_LENGTH / 2;    
     CGFloat cornerPointDistanceMeters = sqrtf( 2 * (halfLineLength * halfLineLength) );
-    CGFloat bearingDegrees = 135.0;
+    CGFloat bearingDegrees = -135.0;
 
     // Get the north-west point location.
     CLLocation *pointNW = [self locationAtDistanceInMeters:cornerPointDistanceMeters 
@@ -283,6 +283,9 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
             CLLocation *tmpLocation = [pathLocations objectAtIndex:j];
+
+            elevationData[0][1] = tmpLocation.altitude;
+            
             
             elevationData[j][i] = tmpLocation.altitude;
 ////////////////            worldCoordinateData[j][i] = tmpLocation;            
@@ -413,7 +416,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 //    CGFloat revAz = atan2(sinAlpha, -tmp);  // final bearing
     
 	CLLocationDegrees destLatitude = RAD2DEG(lat2);
-	CLLocationDegrees destLongitude = RAD2DEG(lon1+RAD2DEG(L));
+	CLLocationDegrees destLongitude = lon1+RAD2DEG(L);
 	CLLocation *location = [[CLLocation alloc] initWithLatitude:destLatitude longitude:destLongitude];
 
     return [location autorelease];
