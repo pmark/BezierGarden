@@ -11,7 +11,7 @@
 
 #define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%@&samples=%i&sensor=false"
 #define ELEVATION_PATH_SAMPLES 3
-#define ELEVATION_LINE_LENGTH 1000
+#define ELEVATION_LINE_LENGTH 2500
 
 @interface ElevationGrid : NSObject 
 {
@@ -28,5 +28,6 @@
 - (void) buildArray;
 - (NSString *) urlEncode:(NSString*)unencoded;
 - (void) printElevationData;
+- (CLLocation *) locationAtDistanceInMeters:(CLLocationDistance)meters bearingDegrees:(CLLocationDistance)bearing fromLocation:(CLLocation *)origin;
 
 @end

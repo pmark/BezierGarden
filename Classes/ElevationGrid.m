@@ -164,6 +164,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
                                                    timestamp:nil];
         
         [pathLocations addObject:tmpLocation];
+        [tmpLocation release];
     }
     
     return pathLocations;
@@ -182,10 +183,10 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     }
     else
     {
-        CGFloat deltaLat = northMeters / 10000.0;
-//        CGFloat deltaLat = atanf( (ELEVATION_LINE_LENGTH/2) / [self ellipsoidRadius:origin.coordinate.latitude]);
+        CGFloat deltaLat = 
      	latitude = origin.coordinate.latitude + deltaLat;
     }
+    
     
     // Longitude
     if (eastMeters == 0) 
@@ -217,30 +218,68 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 //                                    fromLocation:startPoint];
 }
 
+- (CLLocation *) locationEastOf:(CLLocation *)northPoint byDegrees:(CLLocationDegrees)lonSegLenDegrees
+{
+    return [[[CLLocation alloc] initWithLatitude:northPoint.coordinate.latitude 
+                                                       longitude:northPoint.coordinate.longitude + lonSegLenDegrees] autorelease];
+    
+}
+
 - (void) buildArray
 {    
-    CGFloat northStartOffsetMeters = ELEVATION_LINE_LENGTH / 2;
-    CGFloat eastStartOffsetMeters = -ELEVATION_LINE_LENGTH / 2;
-    CGFloat segmentLengthMeters = ELEVATION_LINE_LENGTH / ELEVATION_PATH_SAMPLES;
+    CGFloat halfLineLength = ELEVATION_LINE_LENGTH / 2;    
+    CGFloat cornerPointDistanceMeters = sqrtf( 2 * (halfLineLength * halfLineLength) );
+    CGFloat bearingDegrees = 135.0;
+
+    // Get the north-west point location.
+    CLLocation *pointNW = [self locationAtDistanceInMeters:cornerPointDistanceMeters 
+                                           bearingDegrees:bearingDegrees
+                                             fromLocation:gridOrigin];
+    
+    // Get the south-east point location.
+    CLLocation *pointSE = [self locationAtDistanceInMeters:cornerPointDistanceMeters 
+                                             bearingDegrees:bearingDegrees+180.0
+                                               fromLocation:gridOrigin];
+    
+    
+    // Get the lon seg len deg
+    CLLocationDegrees pointNWLongitude = pointNW.coordinate.longitude;
+    CLLocationDegrees pointSELongitude = pointSE.coordinate.longitude;
+    CLLocationDegrees lineLengthDegrees = fabsf(
+                        (180 + pointNWLongitude) -
+                        (180 + pointSELongitude));
+    
+    CLLocationDegrees lonSegLenDegrees = lineLengthDegrees / ELEVATION_PATH_SAMPLES;
+
+    // Make the SW point.
+    CLLocationDegrees pointSWLatitude = pointSE.coordinate.latitude;
+    CLLocation *pointSW = [[[CLLocation alloc] initWithLatitude:pointSWLatitude longitude:pointNWLongitude] autorelease];
+    
+    CLLocation *northPoint = pointNW;
+    CLLocation *southPoint = pointSW;
     
     for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
     {        
-        // Make N/S lines.
-        CGFloat eastOffsetMeters = eastStartOffsetMeters + (i * segmentLengthMeters);
+        NSLog(@"Getting elevations between %@ and %@", northPoint, southPoint);
         
-        NSLog(@"Moving east: %.0f m", eastOffsetMeters);
-        CLLocation *point1 = [self locationAtDistanceInMetersNorth:northStartOffsetMeters
-                                                              East:eastOffsetMeters
-                                                      fromLocation:gridOrigin];
+        NSArray *pathLocations = [self googlePathElevationBetween:northPoint 
+                                                              and:southPoint 
+                                                          samples:ELEVATION_PATH_SAMPLES];    
         
-        CLLocation *point2 = [self pathEndpointFrom:point1];
+        // Validate path elevation data returned from google's elevation API.
+        if (!pathLocations || [pathLocations count] == 0)
+        {
+            NSLog(@"[EG] WARNING: Google failed.");
+			continue;            
+        }
         
-        NSLog(@"Getting elevations between %@ and %@", point1, point2);
+        // Move meridian points east.
+        NSLog(@"Moving east: %.0f deg", lonSegLenDegrees);
         
-        NSArray *pathLocations = [self googlePathElevationBetween:point1 
-                                                           and:point2 
-                                                       samples:ELEVATION_PATH_SAMPLES];    
-
+		northPoint = [self locationEastOf:northPoint byDegrees:lonSegLenDegrees];        
+		southPoint = [self locationEastOf:southPoint byDegrees:lonSegLenDegrees];        
+        
+        // Parse results
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
             CLLocation *tmpLocation = [pathLocations objectAtIndex:j];
@@ -321,7 +360,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
  * http://www.movable-type.co.uk/scripts/latlong-vincenty-direct.html
  *
  */
-- (CLLocation*) locationAtDistanceInMeters:(CLLocationDistance)meters bearingDegrees:(CLLocationDistance)bearing fromLocation:(CLLocation *)origin
+- (CLLocation *) locationAtDistanceInMeters:(CLLocationDistance)meters bearingDegrees:(CLLocationDistance)bearing fromLocation:(CLLocation *)origin
 {
     CGFloat a = RADIUS_EQUATORIAL_A;
     CGFloat b = RADIUS_POLAR_B;
@@ -352,7 +391,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     
 	CGFloat cos2SigmaM, sinSigma, cosSigma, deltaSigma;
     
-    while (abs(sigma-sigmaP) > 1e-12) 
+    while (fabs(sigma-sigmaP) > 1e-12) 
 	{
         cos2SigmaM = cosf(2*sigma1 + sigma);
         sinSigma = sinf(sigma);
