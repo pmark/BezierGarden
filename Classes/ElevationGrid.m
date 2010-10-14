@@ -147,14 +147,15 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     {
         NSDictionary *locationData = [oneResult objectForKey:@"location"];
         
+        // TODO: Make sure the location data is valid.
         lat = [locationData objectForKey:@"lat"];
-        coordinate.latitude = ([lat length] == 0 ? 0.0 : [lat doubleValue]);
+        coordinate.latitude = [lat doubleValue];
         
         lng = [locationData objectForKey:@"lng"];
-        coordinate.longitude = ([lng length] == 0 ? 0.0 : [lng doubleValue]);
+        coordinate.longitude = [lng doubleValue];
 
         elevation = [oneResult objectForKey:@"elevation"];        
-		alt = ([elevation length] == 0 ? 0.0 : [elevation doubleValue]);
+		alt = [elevation doubleValue];
                 
         tmpLocation = [[CLLocation alloc] initWithCoordinate:coordinate 
                                                     altitude:alt
