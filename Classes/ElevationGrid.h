@@ -16,16 +16,16 @@
 @interface ElevationGrid : NSObject 
 {
 	CLLocation *gridOrigin;
+    NSMutableArray *gridLocationRows;
 }
 
 @property (nonatomic, retain) CLLocation *gridOrigin;
+@property (nonatomic, retain) NSMutableArray *gridLocationRows;
 
 - (id) initAroundLocation:(CLLocation*)origin;
 - (NSArray*) googlePathElevationBetween:(CLLocation*)point1 and:(CLLocation*)point2 samples:(NSInteger)samples;
 - (CLLocation*) locationAtDistanceInMetersNorth:(CLLocationDistance)northMeters East:(CLLocationDistance)eastMeters fromLocation:(CLLocation*)origin;
 - (void) buildArray;
-- (CGFloat) ellipsoidRadius:(CLLocationDegrees)latitude;
-- (CGFloat) longitudinalRadius:(CLLocationDegrees)latitude;
 - (NSString *) urlEncode:(NSString*)unencoded;
 - (void) printElevationData;
 

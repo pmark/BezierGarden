@@ -8,19 +8,30 @@
 
 #import "ElevationGrid.h"
 #import "NSDictionary+BSJSONAdditions.h"
+#import "SM3DAR.h"
 
-#define RADIUS_EQUATORIAL 6378137
-#define RADIUS_POLAR 6356752.3
+#define DEG2RAD(A)			((A) * 0.01745329278)
+#define RAD2DEG(A)			((A) * 57.2957786667)
+
+// WGS-84 ellipsoid
+#define RADIUS_EQUATORIAL_A 6378137
+#define RADIUS_POLAR_B 6356752.3142
+#define INVERSE_FLATTENING 	1/298.257223563
+
+
 
 @implementation ElevationGrid
 
 CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
+Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 
 @synthesize gridOrigin;
+@synthesize gridLocationRows;
 
 - (void) dealloc
 {
 	self.gridOrigin = nil;
+    self.gridLocationRows = nil;
     [super dealloc];
 }
 
@@ -29,6 +40,7 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     if (self = [super init])
     {
         self.gridOrigin = origin;
+        self.gridLocationRows = [NSMutableArray arrayWithCapacity:ELEVATION_PATH_SAMPLES];
         
         [self buildArray];
         
@@ -125,22 +137,39 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 	NSArray *results = [self getChildren:data parent:@"results"];        
     NSLog(@"RESULTS:\n\n%@", results);
     
-    NSMutableArray *pathElevations = [NSMutableArray arrayWithCapacity:[results count]];
-    NSString *elevation;
+    NSMutableArray *pathLocations = [NSMutableArray arrayWithCapacity:[results count]];
+    NSString *elevation, *lat, *lng;
+    CLLocation *tmpLocation;
+    CLLocationDistance alt;
+    CLLocationCoordinate2D coordinate;
     
     for (NSDictionary *oneResult in results)
     {
+        NSDictionary *locationData = [oneResult objectForKey:@"location"];
         
+        lat = [locationData objectForKey:@"lat"];
+        coordinate.latitude = ([lat length] == 0 ? 0.0 : [lat doubleValue]);
+        
+        lng = [locationData objectForKey:@"lng"];
+        coordinate.longitude = ([lng length] == 0 ? 0.0 : [lng doubleValue]);
+
         elevation = [oneResult objectForKey:@"elevation"];        
-        NSNumber *elevationNumber = [NSNumber numberWithDouble:[elevation doubleValue]];
-        [pathElevations addObject:elevationNumber];
+		alt = ([elevation length] == 0 ? 0.0 : [elevation doubleValue]);
+                
+        tmpLocation = [[CLLocation alloc] initWithCoordinate:coordinate 
+                                                    altitude:alt
+                                          horizontalAccuracy:-1 
+                                            verticalAccuracy:-1 
+                                                   timestamp:nil];
+        
+        [pathLocations addObject:tmpLocation];
     }
     
-    return pathElevations;
+    return pathLocations;
 }
 
-- (CLLocation*) locationAtDistanceInMetersNorth:(CLLocationDistance)northMeters 
-                                           East:(CLLocationDistance)eastMeters 
+- (CLLocation*) locationAtDistanceInMetersNorth:(CLLocationDistance)northMeters
+                                           East:(CLLocationDistance)eastMeters
                                    fromLocation:(CLLocation*)origin
 {
     CLLocationDegrees latitude, longitude;
@@ -207,51 +236,20 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
         
         NSLog(@"Getting elevations between %@ and %@", point1, point2);
         
-        NSArray *elevations = [self googlePathElevationBetween:point1 
+        NSArray *pathLocations = [self googlePathElevationBetween:point1 
                                                            and:point2 
                                                        samples:ELEVATION_PATH_SAMPLES];    
 
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
-            NSNumber *elevationNumber = [elevations objectAtIndex:j];
-            elevationData[i][j] = [elevationNumber doubleValue];
-            NSLog(@"i:%i  j:%i  elev:%.0f (%@)", i, j, elevationData[i][j], elevationNumber);
+            CLLocation *tmpLocation = [pathLocations objectAtIndex:j];
+            
+            elevationData[j][i] = tmpLocation.altitude;
+////////////////            worldCoordinateData[j][i] = tmpLocation;            
         }
     }
 
 	[self printElevationData];
-}
-
-- (CGFloat) ellipsoidRadius:(CLLocationDegrees)latitude
-{
-    CGFloat phi = latitude * M_PI / 180.0;
-
-    CGFloat a = RADIUS_EQUATORIAL;
-    CGFloat b = RADIUS_POLAR;
-    
-    CGFloat part1 = powf(( (a*a) * cosf(phi) ), 2);
-    CGFloat part2 = powf(( (b*b) * sinf(phi) ), 2);
-    CGFloat part3 = powf(( a * cosf(phi) ), 2);
-    CGFloat part4 = powf(( b * sinf(phi) ), 2);
-    
-	return sqrtf( (part1 + part2) / (part3 + part4));
-}
-
-- (CGFloat) longitudinalRadius:(CLLocationDegrees)latitude
-{
-    CGFloat phi = latitude * M_PI / 180.0;
-    
-    return cosf(phi) * [self ellipsoidRadius:latitude];    
-}
-
-- (NSString *) urlEncode:(NSString*)unencoded
-{
-	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
-                               	NULL,
-                        		(CFStringRef)unencoded,
-                                NULL,
-                                (CFStringRef)@"!*'();:@&=+$,/?%#[]|",
-                                kCFStringEncodingUTF8);
 }
 
 - (void) printElevationData
@@ -265,7 +263,7 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
-            [str appendFormat:@"%.0f ", elevationData[j][i]];
+            [str appendFormat:@"%.0f ", elevationData[i][j]];
         }
 
     }
@@ -275,5 +273,112 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
     NSLog(str, 0);
 }
 
+- (CLLocation*) locationAtGridPointRow:(NSInteger)rowIndex column:(NSInteger)columnIndex
+{
+    NSArray *column = [gridLocationRows objectAtIndex:rowIndex];
+    return [column objectAtIndex:columnIndex];
+}
+
+- (void) buildWorldCoordinateGrid
+{
+    Coord3D worldCoordinate;
+
+    for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
+    {
+        
+        for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
+        {
+            CLLocation *location = [self locationAtGridPointRow:i column:j];
+            worldCoordinate = [SM3DAR_Controller worldCoordinateFor:location];
+            
+            // Now what?
+            worldCoordinateData[i][j] = worldCoordinate;
+        }
+        
+    }    
+
+}
+
+#pragma mark -
+- (NSString *) urlEncode:(NSString*)unencoded
+{
+	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                               NULL,
+                                                               (CFStringRef)unencoded,
+                                                               NULL,
+                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]|",
+                                                               kCFStringEncodingUTF8);
+}
+
+#pragma mark Vincenty
+
+/**
+ * destinationVincenty
+ * Calculate destination point given start point lat/long (numeric degrees),
+ * bearing (numeric degrees) & distance (in m).
+ * Adapted from Chris Veness work, see
+ * http://www.movable-type.co.uk/scripts/latlong-vincenty-direct.html
+ *
+ */
+- (CLLocation*) locationAtDistanceInMeters:(CLLocationDistance)meters bearingDegrees:(CLLocationDistance)bearing fromLocation:(CLLocation *)origin
+{
+    CGFloat a = RADIUS_EQUATORIAL_A;
+    CGFloat b = RADIUS_POLAR_B;
+	CGFloat f = INVERSE_FLATTENING;
+    
+    CLLocationDegrees lon1 = origin.coordinate.longitude;
+    CLLocationDegrees lat1 = origin.coordinate.latitude;
+
+	CGFloat s = meters;
+	CGFloat alpha1 = DEG2RAD(bearing);
+
+    CGFloat sinAlpha1 = sinf(alpha1);
+    CGFloat cosAlpha1 = cosf(alpha1);
+    
+    CGFloat tanU1 = (1-f) * tanf(DEG2RAD(lat1));
+    CGFloat cosU1 = 1 / sqrtf((1 + tanU1*tanU1)), 
+	sinU1 = tanU1*cosU1;
+
+    CGFloat sigma1 = atan2(tanU1, cosAlpha1);
+    CGFloat sinAlpha = cosU1 * sinAlpha1;
+    CGFloat cosSqAlpha = 1 - sinAlpha*sinAlpha;
+    CGFloat uSq = cosSqAlpha * (a*a - b*b) / (b*b);
+    CGFloat A = 1 + uSq/16384*(4096+uSq*(-768+uSq*(320-175*uSq)));
+    CGFloat B = uSq/1024 * (256+uSq*(-128+uSq*(74-47*uSq)));
+    
+    CGFloat sigma = s / (b*A);
+	CGFloat sigmaP = 2*M_PI;
+    
+	CGFloat cos2SigmaM, sinSigma, cosSigma, deltaSigma;
+    
+    while (abs(sigma-sigmaP) > 1e-12) 
+	{
+        cos2SigmaM = cosf(2*sigma1 + sigma);
+        sinSigma = sinf(sigma);
+        cosSigma = cosf(sigma);
+        deltaSigma = B*sinSigma*(cos2SigmaM+B/4*(cosSigma*(-1+2*cos2SigmaM*cos2SigmaM)-
+                                                         B/6*cos2SigmaM*(-3+4*sinSigma*sinSigma)*(-3+4*cos2SigmaM*cos2SigmaM)));
+        sigmaP = sigma;
+        sigma = s / (b*A) + deltaSigma;
+    }
+    
+    CGFloat tmp = sinU1*sinSigma - cosU1*cosSigma*cosAlpha1;
+    CGFloat lat2 = atan2(sinU1*cosSigma + cosU1*sinSigma*cosAlpha1,
+                          (1-f)*sqrt(sinAlpha*sinAlpha + tmp*tmp));
+    CGFloat lambda = atan2(sinSigma*sinAlpha1, cosU1*cosSigma - sinU1*sinSigma*cosAlpha1);
+    CGFloat C = f/16*cosSqAlpha*(4+f*(4-3*cosSqAlpha));
+    CGFloat L = lambda - (1-C) * f * sinAlpha *
+    (sigma + C*sinSigma*(cos2SigmaM+C*cosSigma*(-1+2*cos2SigmaM*cos2SigmaM)));
+    
+//    CGFloat revAz = atan2(sinAlpha, -tmp);  // final bearing
+    
+	CLLocationDegrees destLatitude = RAD2DEG(lat2);
+	CLLocationDegrees destLongitude = RAD2DEG(lon1+RAD2DEG(L));
+	CLLocation *location = [[CLLocation alloc] initWithLatitude:destLatitude longitude:destLongitude];
+
+    return [location autorelease];
+}
+
+#pragma mark -
 
 @end
