@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 
 #define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%@&samples=%i&sensor=false"
-#define ELEVATION_PATH_SAMPLES 10
+#define ELEVATION_PATH_SAMPLES 2
 #define ELEVATION_LINE_LENGTH 10000
 
 @interface ElevationGrid : NSObject 
