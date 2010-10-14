@@ -8,7 +8,6 @@
 
 #import "ElevationGrid.h"
 #import "NSDictionary+BSJSONAdditions.h"
-#import "SM3DAR.h"
 
 #define DEG2RAD(A)			((A) * 0.01745329278)
 #define RAD2DEG(A)			((A) * 57.2957786667)
@@ -26,12 +25,10 @@ CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES]
 Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 
 @synthesize gridOrigin;
-@synthesize gridLocationRows;
 
 - (void) dealloc
 {
 	self.gridOrigin = nil;
-    self.gridLocationRows = nil;
     [super dealloc];
 }
 
@@ -40,7 +37,6 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     if (self = [super init])
     {
         self.gridOrigin = origin;
-        self.gridLocationRows = [NSMutableArray arrayWithCapacity:ELEVATION_PATH_SAMPLES];
         
         [self buildArray];
         
@@ -48,6 +44,14 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     
     return self;
 }
+
+#pragma mark -
+- (Coord3D*) worldCoordinates
+{
+    return *worldCoordinateData;
+}
+
+#pragma mark -
 
 - (NSArray*) getChildren:(id)data parent:(NSString*)parent
 {	    
@@ -314,37 +318,11 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 
     }
 
-    [str appendString:@"\n"];
-    [wpStr appendString:@"\n"];
+    [str appendString:@"\n\n"];
+    [wpStr appendString:@"\n\n"];
 
     NSLog(str, 0);
     NSLog(wpStr, 0);
-}
-
-- (CLLocation*) locationAtGridPointRow:(NSInteger)rowIndex column:(NSInteger)columnIndex
-{
-    NSArray *column = [gridLocationRows objectAtIndex:rowIndex];
-    return [column objectAtIndex:columnIndex];
-}
-
-- (void) buildWorldCoordinateGrid
-{
-    Coord3D worldCoordinate;
-
-    for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
-    {
-        
-        for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
-        {
-            CLLocation *location = [self locationAtGridPointRow:i column:j];
-            worldCoordinate = [SM3DAR_Controller worldCoordinateFor:location];
-            
-            // Now what?
-            worldCoordinateData[i][j] = worldCoordinate;
-        }
-        
-    }    
-
 }
 
 #pragma mark -

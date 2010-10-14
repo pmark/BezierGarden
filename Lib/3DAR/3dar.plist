@@ -11,7 +11,7 @@
 	<key>3darEnableMap</key>
 	<false/>
 	<key>3darDrawGroundplaneGrid</key>
-	<true/>
+	<false/>
 	<key>3darDisableLocationServices</key>
 	<false/>
 </dict>

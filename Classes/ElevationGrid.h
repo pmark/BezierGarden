@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "SM3DAR.h"
 
 #define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%@&samples=%i&sensor=false"
 #define ELEVATION_PATH_SAMPLES 2
@@ -16,11 +17,9 @@
 @interface ElevationGrid : NSObject 
 {
 	CLLocation *gridOrigin;
-    NSMutableArray *gridLocationRows;
 }
 
 @property (nonatomic, retain) CLLocation *gridOrigin;
-@property (nonatomic, retain) NSMutableArray *gridLocationRows;
 
 - (id) initAroundLocation:(CLLocation*)origin;
 - (NSArray*) googlePathElevationBetween:(CLLocation*)point1 and:(CLLocation*)point2 samples:(NSInteger)samples;
@@ -29,5 +28,6 @@
 - (NSString *) urlEncode:(NSString*)unencoded;
 - (void) printElevationData;
 - (CLLocation *) locationAtDistanceInMeters:(CLLocationDistance)meters bearingDegrees:(CLLocationDistance)bearing fromLocation:(CLLocation *)origin;
+- (Coord3D *) worldCoordinates;
 
 @end

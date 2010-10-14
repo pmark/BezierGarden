@@ -16,6 +16,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* BezierGardenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* BezierGardenViewController.m */; };
 		4D0AF202126011D400B6ACE4 /* DotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0AF201126011D400B6ACE4 /* DotView.m */; };
+		4DD9204B12674E9C0055BB3B /* lib3DAR_v4_0_6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD9204A12674E9C0055BB3B /* lib3DAR_v4_0_6.a */; };
 		4DE67857125CBBBE0080EEB0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE67856125CBBBE0080EEB0 /* CoreLocation.framework */; };
 		4DE67859125CBBBE0080EEB0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE67858125CBBBE0080EEB0 /* CoreMotion.framework */; };
 		4DE6785B125CBBBE0080EEB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE6785A125CBBBE0080EEB0 /* MapKit.framework */; };
@@ -61,7 +62,6 @@
 		4DF1E3F7126194C600DD1E46 /* 3dar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DF1E3F2126194C600DD1E46 /* 3dar.plist */; };
 		4DF1E3F8126194C600DD1E46 /* 3dar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF1E3F3126194C600DD1E46 /* 3dar_logo.png */; };
 		4DF1E3FA126194C600DD1E46 /* SM3DAR_keys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DF1E3F6126194C600DD1E46 /* SM3DAR_keys.txt */; };
-		4DF1E3FC126194D700DD1E46 /* lib3DAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF1E3FB126194D700DD1E46 /* lib3DAR.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +79,7 @@
 		32CA4F630368D1EE00C91783 /* BezierGarden_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierGarden_Prefix.pch; sourceTree = "<group>"; };
 		4D0AF200126011D400B6ACE4 /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
 		4D0AF201126011D400B6ACE4 /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
+		4DD9204A12674E9C0055BB3B /* lib3DAR_v4_0_6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = lib3DAR_v4_0_6.a; sourceTree = "<group>"; };
 		4DE67856125CBBBE0080EEB0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4DE67858125CBBBE0080EEB0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		4DE6785A125CBBBE0080EEB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -166,7 +167,6 @@
 		4DF1E3F3126194C600DD1E46 /* 3dar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3dar_logo.png; sourceTree = "<group>"; };
 		4DF1E3F5126194C600DD1E46 /* SM3DAR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SM3DAR.h; sourceTree = "<group>"; };
 		4DF1E3F6126194C600DD1E46 /* SM3DAR_keys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SM3DAR_keys.txt; sourceTree = "<group>"; };
-		4DF1E3FB126194D700DD1E46 /* lib3DAR.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib3DAR.a; path = ../../SM3DARLibrary/SM3DARLibrary/build/lib3DAR.a; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* BezierGarden-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BezierGarden-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,7 +184,7 @@
 				4DE6785D125CBBBE0080EEB0 /* OpenGLES.framework in Frameworks */,
 				4DE6785F125CBBBE0080EEB0 /* QuartzCore.framework in Frameworks */,
 				4DE67948125CBFE70080EEB0 /* SystemConfiguration.framework in Frameworks */,
-				4DF1E3FC126194D700DD1E46 /* lib3DAR.a in Frameworks */,
+				4DD9204B12674E9C0055BB3B /* lib3DAR_v4_0_6.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +428,11 @@
 		4DF1E3F1126194C600DD1E46 /* 3DAR */ = {
 			isa = PBXGroup;
 			children = (
+				4DD9204A12674E9C0055BB3B /* lib3DAR_v4_0_6.a */,
 				4DF1E3F2126194C600DD1E46 /* 3dar.plist */,
 				4DF1E3F3126194C600DD1E46 /* 3dar_logo.png */,
 				4DF1E3F5126194C600DD1E46 /* SM3DAR.h */,
 				4DF1E3F6126194C600DD1E46 /* SM3DAR_keys.txt */,
-				4DF1E3FB126194D700DD1E46 /* lib3DAR.a */,
 			);
 			path = 3DAR;
 			sourceTree = "<group>";
