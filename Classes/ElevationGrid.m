@@ -229,7 +229,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 {    
     CGFloat halfLineLength = ELEVATION_LINE_LENGTH / 2;    
     CGFloat cornerPointDistanceMeters = sqrtf( 2 * (halfLineLength * halfLineLength) );
-    CGFloat bearingDegrees = -135.0;
+    CGFloat bearingDegrees = -45.0;
 
     // Get the north-west point location.
     CLLocation *pointNW = [self locationAtDistanceInMeters:cornerPointDistanceMeters 
