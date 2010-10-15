@@ -21,9 +21,6 @@
 
 @implementation ElevationGrid
 
-CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
-Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
-
 @synthesize gridOrigin;
 
 - (void) dealloc

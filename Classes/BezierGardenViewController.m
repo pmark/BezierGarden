@@ -66,13 +66,10 @@
 {
     NSLog(@"loadPointsOfInterest");
 
-    [self addDotAtX:15 Y:10 Z:20];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];    
-//    [self loadPointsOfInterest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +115,10 @@
 {
     NSLog(@"[BGVC] New location: %@", newLocation);
     
-    //self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+
+    [self addDotAtX:0 Y:0 Z:15];
+    
 
     [manager stopUpdatingLocation];
 }

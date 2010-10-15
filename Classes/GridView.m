@@ -5,12 +5,53 @@
 
 #import <OpenGLES/ES1/gl.h>
 #import "GridView.h"
+#import "ElevationGrid.h"
 
 @implementation GridView
 
+- (void) printElevationData
+{
+    CGFloat len = ELEVATION_LINE_LENGTH / 1000.0;
+    NSMutableString *str = [NSMutableString stringWithFormat:@"\n\n%i elevation samples in a %.1f sq km grid\n", ELEVATION_PATH_SAMPLES, len, len];
+    NSMutableString *wpStr = [NSMutableString stringWithString:@"\n\nworld coordinates:\n"];
+    
+    for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
+    {
+        [str appendString:@"\n"];
+        [wpStr appendString:@"\n"];
+        
+        for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
+        {
+            Coord3D c = worldCoordinateData[i][j];
+            [wpStr appendFormat:@"%.0f,%.0f,%.0f  ", c.x, c.y, c.z];            
+            
+            CGFloat elevation = elevationData[i][j];            
+            
+            if (abs(elevation) < 10) [str appendString:@" "];
+            if (abs(elevation) < 100) [str appendString:@" "];
+            if (abs(elevation) < 1000) [str appendString:@" "];
+            
+            if (elevation < 0)
+            {
+                [str replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
+            }
+            
+            [str appendFormat:@"%.0f ", elevation];                        
+        }
+        
+    }
+    
+    [str appendString:@"\n\n"];
+    [wpStr appendString:@"\n\n"];
+    
+    //NSLog(str, 0);
+    NSLog(wpStr, 0);
+}
+
 - (void) buildView 
 {
-    NSLog(@"[GV] buildView");    
+    NSLog(@"[GV] buildView");  
+    [self printElevationData];
 }
 
 - (void) drawAxes

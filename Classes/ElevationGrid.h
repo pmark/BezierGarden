@@ -11,8 +11,12 @@
 #import "SM3DAR.h"
 
 #define GOOGLE_ELEVATION_API_URL_FORMAT @"http://maps.googleapis.com/maps/api/elevation/json?path=%@&samples=%i&sensor=false"
-#define ELEVATION_PATH_SAMPLES 20
+#define ELEVATION_PATH_SAMPLES 2
 #define ELEVATION_LINE_LENGTH 10000
+
+CLLocationDistance elevationData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
+Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
+
 
 @interface ElevationGrid : NSObject 
 {
