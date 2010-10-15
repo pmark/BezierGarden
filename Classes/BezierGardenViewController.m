@@ -9,7 +9,7 @@
 #import "BezierGardenViewController.h"
 #import "GridView.h"
 
-#define MAX_CAMERA_ALTITUDE_METERS 80.0
+#define MAX_CAMERA_ALTITUDE_METERS 12000.0
 #define ALTITUDE_INTERVAL_METERS 2
 
 @implementation BezierGardenViewController
@@ -115,9 +115,9 @@
 {
     NSLog(@"[BGVC] New location: %@", newLocation);
     
-    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+    //self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
 
-    [self addDotAtX:0 Y:0 Z:15];
+    [self addDotAtX:0 Y:0 Z:50];
     
 
     [manager stopUpdatingLocation];

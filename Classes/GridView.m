@@ -9,63 +9,20 @@
 
 @implementation GridView
 
-- (void) printElevationData
-{
-    CGFloat len = ELEVATION_LINE_LENGTH / 1000.0;
-    NSMutableString *str = [NSMutableString stringWithFormat:@"\n\n%i elevation samples in a %.1f sq km grid\n", ELEVATION_PATH_SAMPLES, len, len];
-    NSMutableString *wpStr = [NSMutableString stringWithString:@"\n\nworld coordinates:\n"];
-    
-    for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
-    {
-        [str appendString:@"\n"];
-        [wpStr appendString:@"\n"];
-        
-        for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
-        {
-            Coord3D c = worldCoordinateData[i][j];
-            [wpStr appendFormat:@"%.0f,%.0f,%.0f  ", c.x, c.y, c.z];            
-            
-            CGFloat elevation = elevationData[i][j];            
-            
-            if (abs(elevation) < 10) [str appendString:@" "];
-            if (abs(elevation) < 100) [str appendString:@" "];
-            if (abs(elevation) < 1000) [str appendString:@" "];
-            
-            if (elevation < 0)
-            {
-                [str replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
-            }
-            
-            [str appendFormat:@"%.0f ", elevation];                        
-        }
-        
-    }
-    
-    [str appendString:@"\n\n"];
-    [wpStr appendString:@"\n\n"];
-    
-    //NSLog(str, 0);
-    NSLog(wpStr, 0);
-}
-
 - (void) buildView 
 {
-    NSLog(@"[GV] buildView");  
-    [self printElevationData];
+    NSLog(@"[GV] buildView");    
 }
+
+#define MAX_LINE_LENGTH 256
 
 - (void) drawAxes
 {
-    static float verts[4][3] = {
-        { 3,3,3 },
-        { 9,3,3 },
-        { 3,9,3 },
-        { 3,3,9 }
-    };
+    ushort lineIndex [256];
     
-    static ushort line0 [] = {0,1};
-    static ushort line1 [] = {0,2};
-    static ushort line2 [] = {0,3};
+    Coord3D * verts = &worldCoordinateData[0][0];
+    int gridSize = ELEVATION_PATH_SAMPLES;
+    
     glDisable(GL_LIGHTING);
     
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -74,16 +31,38 @@
     
 	glVertexPointer(3, GL_FLOAT, 0, verts);
     
-    glLineWidth(3.0);
+    glLineWidth(1.0);
+    glColor4f(1,1,0,1);
     
-    glColor4f(1,0,0,1);
-	glDrawElements(GL_LINES, 2, GL_UNSIGNED_SHORT, line0);
+    glScalef(1, 1, 10);
     
-    glColor4f(0,1,0,1);
-	glDrawElements(GL_LINES, 2, GL_UNSIGNED_SHORT, line1);
+    // draw horizontal lines.
     
-    glColor4f(0,0,1,1);
-	glDrawElements(GL_LINES, 2, GL_UNSIGNED_SHORT, line2);    
+    for (int y=0; y < gridSize; y++)
+    {
+    	int start = y * gridSize;
+        
+        // build index array.
+        
+        for (int x=0; x < gridSize; x++)
+        	lineIndex[x] = start + x;
+            
+		glDrawElements(GL_LINE_STRIP, gridSize, GL_UNSIGNED_SHORT, lineIndex);
+    }
+    
+    // draw horizontal lines.
+    
+    for (int x=0; x < gridSize; x++)
+    {
+    	int start = x;
+        
+        // build index array.
+        
+        for (int y=0; y < gridSize; y++)
+        	lineIndex[y] = start + (y * gridSize);
+            
+		glDrawElements(GL_LINE_STRIP, gridSize, GL_UNSIGNED_SHORT, lineIndex);
+    }
 }
 
 - (void) drawGrid

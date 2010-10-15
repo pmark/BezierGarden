@@ -29,6 +29,21 @@
     [super dealloc];
 }
 
+- (id) initFromCache
+{
+    if (self = [super init])
+    {
+        self.gridOrigin = nil;
+        
+//        NSString *path = [self dataFilePath];
+        
+        
+        
+    }
+    
+    return self;
+}
+
 - (id) initAroundLocation:(CLLocation*)origin
 {
     if (self = [super init])
@@ -70,6 +85,13 @@
         return [NSArray arrayWithObject:data];
     
     return nil;
+}
+
+- (NSString *) dataFilePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+    return [documentsDirectoryPath stringByAppendingPathComponent:@"elevation_grid.txt"];
 }
 
 - (NSArray*) googlePathElevationBetween:(CLLocation*)point1 and:(CLLocation*)point2 samples:(NSInteger)samples
@@ -331,6 +353,11 @@
 
     NSLog(str, 0);
     //NSLog(wpStr, 0);
+
+    NSString *filePath = [self dataFilePath];
+    NSLog(@"[EG] Saving world coordinates to %@", filePath);
+    [wpStr writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    
 }
 
 #pragma mark -
