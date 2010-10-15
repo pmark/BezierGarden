@@ -310,10 +310,21 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
-            [str appendFormat:@"%.0f ", elevationData[i][j]];
-
             Coord3D c = worldCoordinateData[i][j];
             [wpStr appendFormat:@"%.0f,%.0f,%.0f  ", c.x, c.y, c.z];            
+            
+            CGFloat elevation = elevationData[i][j];            
+
+            if (abs(elevation) < 10) [str appendString:@" "];
+            if (abs(elevation) < 100) [str appendString:@" "];
+            if (abs(elevation) < 1000) [str appendString:@" "];
+            
+            if (elevation < 0)
+            {
+                [str replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
+            }
+
+            [str appendFormat:@"%.0f ", elevation];                        
         }
 
     }
@@ -322,7 +333,7 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
     [wpStr appendString:@"\n\n"];
 
     NSLog(str, 0);
-    NSLog(wpStr, 0);
+    //NSLog(wpStr, 0);
 }
 
 #pragma mark -
