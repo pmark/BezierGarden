@@ -17,6 +17,7 @@
 		28D7ACF80DDB3853001CB0EB /* BezierGardenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* BezierGardenViewController.m */; };
 		4D0AF202126011D400B6ACE4 /* DotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0AF201126011D400B6ACE4 /* DotView.m */; };
 		4DD9204B12674E9C0055BB3B /* lib3DAR_v4_0_6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD9204A12674E9C0055BB3B /* lib3DAR_v4_0_6.a */; };
+		4DD9214A126905760055BB3B /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD92149126905760055BB3B /* GridView.m */; };
 		4DE67857125CBBBE0080EEB0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE67856125CBBBE0080EEB0 /* CoreLocation.framework */; };
 		4DE67859125CBBBE0080EEB0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE67858125CBBBE0080EEB0 /* CoreMotion.framework */; };
 		4DE6785B125CBBBE0080EEB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE6785A125CBBBE0080EEB0 /* MapKit.framework */; };
@@ -80,6 +81,8 @@
 		4D0AF200126011D400B6ACE4 /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
 		4D0AF201126011D400B6ACE4 /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
 		4DD9204A12674E9C0055BB3B /* lib3DAR_v4_0_6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = lib3DAR_v4_0_6.a; sourceTree = "<group>"; };
+		4DD92148126905760055BB3B /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		4DD92149126905760055BB3B /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
 		4DE67856125CBBBE0080EEB0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4DE67858125CBBBE0080EEB0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		4DE6785A125CBBBE0080EEB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -202,6 +205,8 @@
 				28D7ACF70DDB3853001CB0EB /* BezierGardenViewController.m */,
 				4DF1E39912617C1100DD1E46 /* ElevationGrid.h */,
 				4DF1E39A12617C1100DD1E46 /* ElevationGrid.m */,
+				4DD92148126905760055BB3B /* GridView.h */,
+				4DD92149126905760055BB3B /* GridView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				4DE67944125CBFD40080EEB0 /* APIClient.m in Sources */,
 				4D0AF202126011D400B6ACE4 /* DotView.m in Sources */,
 				4DF1E39B12617C1100DD1E46 /* ElevationGrid.m in Sources */,
+				4DD9214A126905760055BB3B /* GridView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "BezierGardenViewController.h"
-#import "DotView.h"
+#import "GridView.h"
 
 #define MAX_CAMERA_ALTITUDE_METERS 80.0
 #define ALTITUDE_INTERVAL_METERS 2
@@ -50,7 +50,7 @@
     
     p.worldPoint = coord;
 
-    DotView *dotView = [[DotView alloc] init];
+    GridView *dotView = [[GridView alloc] init];
 
     // Give the point a view.
     dotView.point = p;
@@ -118,7 +118,7 @@
 {
     NSLog(@"[BGVC] New location: %@", newLocation);
     
-    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+    //self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
 
     [manager stopUpdatingLocation];
 }
