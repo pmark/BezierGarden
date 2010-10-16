@@ -13,7 +13,7 @@
 	<key>3darDrawGroundplaneGrid</key>
 	<false/>
 	<key>3darDisableLocationServices</key>
-	<false/>
+	<true/>
 	<key>3darDisableGyro</key>
 	<true/>
 </dict>

@@ -37,6 +37,10 @@
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     self.view = sm3dar.view;
 
+    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
+    
+    [self addDotAtX:0 Y:0 Z:-100];
+    
     NSLog(@"[BGVC] Remember to undisable location services for real positioning.");
     
 }
@@ -130,9 +134,9 @@
     //self.elevationGrid = [[[ElevationGrid alloc] initFromCache] autorelease];
     
     // Load elevation grid from bundled data file.
-    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
-
-    [self addDotAtX:0 Y:0 Z:-100];
+//    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
+//
+//    [self addDotAtX:0 Y:0 Z:-100];
 
     
 }

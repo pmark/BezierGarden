@@ -8,7 +8,7 @@
 #import "ElevationGrid.h"
 
 #define GRID_SCALE_HORIZONTAL 0.1
-#define GRID_SCALE_VERTICAL 0.4
+#define GRID_SCALE_VERTICAL 0.45
 
 @implementation GridView
 
