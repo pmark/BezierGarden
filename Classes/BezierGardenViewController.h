@@ -20,6 +20,7 @@
 @property (nonatomic, retain) ElevationGrid *elevationGrid;
 
 - (void) screenTouched:(CGPoint)p;
+- (void) addDotAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z;
 
 @end
 

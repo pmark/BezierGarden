@@ -7,6 +7,9 @@
 #import "GridView.h"
 #import "ElevationGrid.h"
 
+#define GRID_SCALE_HORIZONTAL 0.1
+#define GRID_SCALE_VERTICAL 0.4
+
 @implementation GridView
 
 - (void) buildView 
@@ -16,11 +19,29 @@
 
 #define MAX_LINE_LENGTH 256
 
-- (void) drawAxes
+- (void) drawFog
+{
+    GLfloat fogColor[4] = {0.8f, 0.8f, 0.9f, 1.0f};
+    glFogfv(GL_FOG_COLOR, fogColor);
+
+    glFogf(GL_FOG_MODE, GL_LINEAR);
+    glFogf(GL_FOG_DENSITY, 1.0);
+
+    glFogf(GL_FOG_START, 0.0);
+    
+    CGFloat fogEnd = GRID_SCALE_HORIZONTAL * ELEVATION_LINE_LENGTH / 2.0;
+    glFogf(GL_FOG_END, fogEnd);
+
+    glHint(GL_FOG_HINT, GL_NICEST);
+
+    glEnable(GL_FOG);
+}
+
+- (void) drawGrid
 {
     ushort lineIndex [256];
     
-    Coord3D * verts = &worldCoordinateData[0][0];
+    Coord3D *verts = &worldCoordinateData[0][0];
     int gridSize = ELEVATION_PATH_SAMPLES;
     
     glDisable(GL_LIGHTING);
@@ -34,7 +55,7 @@
     glLineWidth(1.0);
     glColor4f(1,1,0,1);
     
-    glScalef(1, 1, 10);
+    glScalef(GRID_SCALE_HORIZONTAL, GRID_SCALE_HORIZONTAL, GRID_SCALE_VERTICAL);
     
     // draw horizontal lines.
     
@@ -65,35 +86,10 @@
     }
 }
 
-- (void) drawGrid
-{
-    
-}
-
 - (void) drawInGLContext 
 {
-    const int stride = 3 * sizeof(float);
-    
-    float lines[][3] = 
-    {
-        { 0, 0, 0 }, 
-        { 0, 2, 0 },
-        { 2, 2, 0 },
-        { 2, 0, 0 }
-    };
-
-    glEnableClientState(GL_VERTEX_ARRAY);
-    
-    glColor4f(1, 1, 1, 1);
-    
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    
-    glLineWidth(3.0);
-    glVertexPointer(3, GL_FLOAT, stride, lines);
-    glDrawArrays(GL_LINE_LOOP, 0, sizeof(lines) / stride);
-
-    [self drawAxes];
+    [self drawGrid];
+    [self drawFog];
 }
 
 @end

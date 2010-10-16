@@ -29,16 +29,26 @@
     [super dealloc];
 }
 
-- (id) initFromCache
+- (id) initFromFile:(NSString*)bundleFileName
 {
     if (self = [super init])
     {
         self.gridOrigin = nil;
         
-//        NSString *path = [self dataFilePath];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:bundleFileName ofType:nil];
+        [self loadDataFile:filePath];        
+    }
+    
+    return self;
+}
         
-        
-        
+- (id) initFromCache
+{
+    if (self = [super init])
+    {
+        self.gridOrigin = nil;
+
+        [self loadDataFile:[self dataFilePath]];        
     }
     
     return self;
@@ -145,6 +155,12 @@
     NSString *status = [data objectForKey:@"status"];    
     NSLog(@"[EG] Request status: %@", status);    
 
+    if ([status isEqualToString:@"OVER_QUERY_LIMIT"])
+    {
+        NSLog(@"[EG] Over query limit!");
+        return nil;
+    }
+
     // Get the result data items. See example below.
     /* 
      {
@@ -158,7 +174,7 @@
     */
     
 	NSArray *results = [self getChildren:data parent:@"results"];        
-    NSLog(@"RESULTS:\n\n%@", results);
+    //NSLog(@"RESULTS:\n\n%@", results);
     
     NSMutableArray *pathLocations = [NSMutableArray arrayWithCapacity:[results count]];
     NSString *elevation, *lat, *lng;
@@ -292,7 +308,7 @@
         // Validate path elevation data returned from google's elevation API.
         if (!pathLocations || [pathLocations count] == 0)
         {
-            NSLog(@"[EG] WARNING: Google failed.");
+            //NSLog(@"[EG] WARNING: Google failed.");
 			continue;            
         }
         
@@ -313,14 +329,14 @@
         }
     }
 
-	[self printElevationData];
+	[self printElevationData:YES];
 }
 
-- (void) printElevationData
+- (void) printElevationData:(BOOL)saveToCache
 {
     CGFloat len = ELEVATION_LINE_LENGTH / 1000.0;
     NSMutableString *str = [NSMutableString stringWithFormat:@"\n\n%i elevation samples in a %.1f sq km grid\n", ELEVATION_PATH_SAMPLES, len, len];
-    NSMutableString *wpStr = [NSMutableString stringWithString:@"\n\nworld coordinates:\n"];
+    NSMutableString *wpStr = [NSMutableString string];
     
     for (int i=0; i < ELEVATION_PATH_SAMPLES; i++)
     {
@@ -330,7 +346,7 @@
         for (int j=0; j < ELEVATION_PATH_SAMPLES; j++)
         {
             Coord3D c = worldCoordinateData[i][j];
-            [wpStr appendFormat:@"%.0f,%.0f,%.0f  ", c.x, c.y, c.z];            
+            [wpStr appendFormat:@"%.0f,%.0f,%.0f ", c.x, c.y, c.z];            
             
             CGFloat elevation = elevationData[i][j];            
 
@@ -351,12 +367,17 @@
     [str appendString:@"\n\n"];
     [wpStr appendString:@"\n\n"];
 
-    NSLog(str, 0);
+    //NSLog(str, 0);
+
+    //NSLog(@"\n\nWorld coordinates:\n");
     //NSLog(wpStr, 0);
 
-    NSString *filePath = [self dataFilePath];
-    NSLog(@"[EG] Saving world coordinates to %@", filePath);
-    [wpStr writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    if (saveToCache)
+    {
+        NSString *filePath = [self dataFilePath];
+        NSLog(@"[EG] Saving world coordinates to %@", filePath);
+        [wpStr writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    }
     
 }
 
@@ -441,5 +462,116 @@
 }
 
 #pragma mark -
+
+- (void) loadDataFile:(NSString*)filePath
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSLog(@"[EG] loadDataFile: %@", filePath);
+    
+    if ([fileManager fileExistsAtPath:filePath])
+    {
+        // Load cached data.
+        NSLog(@"[EG] Loading elevation grid from file.");
+        
+        NSError *error = nil;
+        NSString *coordData = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        
+        if (error)
+        {
+            NSLog(@"[EG] ERROR: ", [error localizedDescription]);
+            [self release];
+        }
+        else
+        {
+            //NSLog(@"\n\n%@\n\n", coordData);
+            
+            // Parse data.  Extract lines first.
+            NSArray *lines = [coordData componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+            
+            if (!lines || [lines count] == 0)
+            {
+                NSLog(@"[EG] Cache file is empty.");
+                [self release];
+            }
+            else
+            {
+                NSInteger i = 0;
+                
+                // Parse each line.                    
+                for (NSString *oneLine in lines)
+                {
+                    if ([oneLine length] == 0)
+                    {
+                        // Skip blank line.
+                        continue;
+                    }
+                    
+                    // Each coordinate triplet is separated by a space.
+                    NSArray *coords = [oneLine componentsSeparatedByString:@" "];
+                    
+                    NSInteger j = 0;
+                    
+                    for (NSString *csv in coords)
+                    {
+                        if ([csv length] == 0)
+                        {
+                            // Skip empty triplet.
+                            continue;
+                        }
+                        
+                        // Each coordinate is represented as X,Y,Z.
+                        NSArray *xyz = [csv componentsSeparatedByString:@","];
+                        
+                        if (!xyz || [xyz count] < 3)
+                        {
+                            NSLog(@"[EG] Invalid triplet format: %@", csv);
+                            
+                            continue;
+                        }
+                        
+                        Coord3D coord;
+                        
+                        @try 
+                        {
+                            coord.x = [[xyz objectAtIndex:0] floatValue];
+                            coord.y = [[xyz objectAtIndex:1] floatValue];
+                            coord.z = [[xyz objectAtIndex:2] floatValue];
+                        }
+                        @catch (NSException *e) 
+                        {
+                            NSLog(@"[EG] Unable to convert triplet to coordinate: %@", [e reason]);
+                            j++;
+                            continue;                                
+                        }
+                        
+                        //NSLog(@"[%i][%i] Z: %.0f", i, j, coord.z);
+                        
+                        worldCoordinateData[i][j] = coord;
+                        
+                        j++;
+                        // End of triplet.
+                    }
+                    
+                    if (j >= ELEVATION_PATH_SAMPLES)
+                    {
+                        // Only increment i if we parsed the right number triplets.
+                        i++;
+                    }
+                    
+                    // End of line.
+                }
+            }
+        }
+        
+        [self printElevationData:NO];
+    }
+    else
+    {
+        NSLog(@"[EG] No cache file.");
+        [self release];
+    }
+    
+}
 
 @end

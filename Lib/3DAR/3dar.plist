@@ -14,5 +14,7 @@
 	<false/>
 	<key>3darDisableLocationServices</key>
 	<false/>
+	<key>3darDisableGyro</key>
+	<true/>
 </dict>
 </plist>

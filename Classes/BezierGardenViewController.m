@@ -9,8 +9,7 @@
 #import "BezierGardenViewController.h"
 #import "GridView.h"
 
-#define MAX_CAMERA_ALTITUDE_METERS 12000.0
-#define ALTITUDE_INTERVAL_METERS 2
+#define MAX_CAMERA_ALTITUDE_METERS 3000.0
 
 @implementation BezierGardenViewController
 
@@ -37,6 +36,13 @@
     sm3dar.delegate = self;
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     self.view = sm3dar.view;
+
+    NSLog(@"[BGVC] Remember to undisable location services for real positioning.");
+    
+}
+
+- (void) sm3darViewDidLoad
+{
 }
 
 - (void) addDotAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z
@@ -113,14 +119,22 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    [manager stopUpdatingLocation];
+
     NSLog(@"[BGVC] New location: %@", newLocation);
     
-    //self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];
+    // Fetch elevation grid points around current location
+    //self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:newLocation] autorelease];    
 
-    [self addDotAtX:0 Y:0 Z:50];
+    // Load elevation grid from cache.
+    //self.elevationGrid = [[[ElevationGrid alloc] initFromCache] autorelease];
     
+    // Load elevation grid from bundled data file.
+    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
 
-    [manager stopUpdatingLocation];
+    [self addDotAtX:0 Y:0 Z:-100];
+
+    
 }
 
 
