@@ -7,6 +7,12 @@
 #import "GridView.h"
 #import "ElevationGrid.h"
 
+
+// Works well for grid size 660km
+//#define GRID_SCALE_HORIZONTAL 0.001
+//#define GRID_SCALE_VERTICAL 0.12
+
+// Works well for grid size 25km
 #define GRID_SCALE_HORIZONTAL 0.1
 #define GRID_SCALE_VERTICAL 0.45
 
@@ -21,7 +27,7 @@
 
 - (void) drawFog
 {
-    GLfloat fogColor[4] = {0.8f, 0.8f, 0.9f, 1.0f};
+    GLfloat fogColor[4] = {0.6f, 0.0f, 0.9f, 0.7f};
     glFogfv(GL_FOG_COLOR, fogColor);
 
     glFogf(GL_FOG_MODE, GL_LINEAR);
@@ -29,7 +35,7 @@
 
     glFogf(GL_FOG_START, 0.0);
     
-    CGFloat fogEnd = GRID_SCALE_HORIZONTAL * ELEVATION_LINE_LENGTH / 2.0;
+    CGFloat fogEnd = GRID_SCALE_HORIZONTAL * ELEVATION_LINE_LENGTH;
     glFogf(GL_FOG_END, fogEnd);
 
     glHint(GL_FOG_HINT, GL_NICEST);

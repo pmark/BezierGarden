@@ -61,7 +61,6 @@
         self.gridOrigin = origin;
         
         [self buildArray];
-        
     }
     
     return self;

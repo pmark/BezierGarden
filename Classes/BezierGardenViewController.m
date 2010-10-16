@@ -37,9 +37,14 @@
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     self.view = sm3dar.view;
 
-    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
+    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
     
-    [self addDotAtX:0 Y:0 Z:-100];
+//    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_oregon.txt"] autorelease];
+//    CLLocation *centerOfOregon = [[[CLLocation alloc] initWithLatitude:46.065608 longitude:-125.496826] autorelease];
+//    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:centerOfOregon] autorelease];
+//    [sm3dar setCurrentLocation:centerOfOregon];
+    
+    [self addDotAtX:0 Y:0 Z:-80];
     
     NSLog(@"[BGVC] Remember to undisable location services for real positioning.");
     
