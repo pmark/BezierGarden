@@ -45,13 +45,16 @@
 
 - (void) drawGrid
 {
-    ushort lineIndex [256];
+    ushort lineIndex [1024];
     
     Coord3D *verts = &worldCoordinateData[0][0];
     int gridSize = ELEVATION_PATH_SAMPLES;
     
     glDisable(GL_LIGHTING);
     
+	glPolygonOffset(1,1);			// Offset fill in z-buffer.
+	glEnable(GL_POLYGON_OFFSET_FILL);
+	
     glEnableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -59,11 +62,44 @@
 	glVertexPointer(3, GL_FLOAT, 0, verts);
     
     glLineWidth(1.0);
-    glColor4f(1,1,0,1);
     
     glScalef(GRID_SCALE_HORIZONTAL, GRID_SCALE_HORIZONTAL, GRID_SCALE_VERTICAL);
     
+    // fill horizontal strip of triangles.
+	
+	glEnable(GL_DEPTH_TEST);
+	
+	bool fill = false;
+	
+	if (fill)
+		glColor4f(0,0,1,1);
+	else	
+		glColorMask(0,0,0,0);			// Turn of visible filling.
+    
+	
+    for (int y=0; y < gridSize-1; y++)
+    {
+    	int start1 = y * gridSize;
+        int start2 = start1 + gridSize;
+		
+        // build index array.
+        
+		int ct = 0;
+		
+        for (int x=0; x < gridSize; x++)
+		{
+        	lineIndex[ct++] = start1 + x;
+			lineIndex[ct++] = start2 + x;
+		}
+		
+		glDrawElements(GL_TRIANGLE_STRIP, ct, GL_UNSIGNED_SHORT, lineIndex);
+    }
+	
     // draw horizontal lines.
+
+	glColorMask(1,1,1,1);
+    glColor4f(1,1,0,1);
+	
     
     for (int y=0; y < gridSize; y++)
     {
