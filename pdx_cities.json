@@ -1,0 +1,23 @@
+{"geonames":[
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city,village,...", "name":"Portland", "wikipedia":"en.wikipedia.org/wiki/Portland", "lng":-122.6762071, "fcode":"PPL", "geonameId":5746545, "lat":45.5234515, "population":540513},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Gresham", "wikipedia":"en.wikipedia.org/wiki/Gresham%2C_Oregon", "lng":-122.4314796, "fcode":"PPL", "geonameId":5729485, "lat":45.4981757, "population":98851},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Beaverton", "wikipedia":"en.wikipedia.org/wiki/Beaverton%2C_Oregon", "lng":-122.8037102, "fcode":"PPL", "geonameId":5713376, "lat":45.487062, "population":82648},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Tigard", "wikipedia":"en.wikipedia.org/wiki/Tigard%2C_Oregon", "lng":-122.7714861, "fcode":"PPL", "geonameId":5756758, "lat":45.4312294, "population":47068},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Lake Oswego", "wikipedia":"en.wikipedia.org/wiki/Lake_Oswego%2C_Oregon", "lng":-122.6706498, "fcode":"PPL", "geonameId":5735724, "lat":45.4206749, "population":36597},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Oregon City", "wikipedia":"en.wikipedia.org/wiki/Oregon_City%2C_Oregon", "lng":-122.6067583, "fcode":"PPL", "geonameId":5744253, "lat":45.3573429, "population":29984},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Tualatin", "wikipedia":"en.wikipedia.org/wiki/Tualatin%2C_Oregon", "lng":-122.7639851, "fcode":"PPL", "geonameId":5757506, "lat":45.3840077, "population":26476},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"West Linn", "wikipedia":"en.wikipedia.org/wiki/West_Linn%2C_Oregon", "lng":-122.6123141, "fcode":"PPL", "geonameId":5760009, "lat":45.3656761, "population":26067},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Milwaukie", "wikipedia":"en.wikipedia.org/wiki/Milwaukie%2C_Oregon", "lng":-122.6392606, "fcode":"PPL", "geonameId":5740900, "lat":45.4462305, "population":20759},
+
+{"fcodeName":"populated place", "countrycode":"US", "fcl":"P", "fclName":"city, village,...", "name":"Camas", "wikipedia":"en.wikipedia.org/wiki/Camas%2C_Washington", "lng":-122.3995363, "fcode":"PPL", "geonameId":5788822, "lat":45.5870631, "population":17040}
+
+]}

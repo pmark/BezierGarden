@@ -84,6 +84,7 @@
 		32CA4F630368D1EE00C91783 /* BezierGarden_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierGarden_Prefix.pch; sourceTree = "<group>"; };
 		4D0AF200126011D400B6ACE4 /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
 		4D0AF201126011D400B6ACE4 /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
+		4D0E02BC127B491900D6F568 /* pdx_cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pdx_cities.json; sourceTree = "<group>"; };
 		4D219C3E12738FEB006AE795 /* TVOutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVOutManager.h; sourceTree = "<group>"; };
 		4D219C3F12738FEB006AE795 /* TVOutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVOutManager.m; sourceTree = "<group>"; };
 		4D4C6E1812697E8B00DCEF32 /* elevation_grid_oregon_660km_150s.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = elevation_grid_oregon_660km_150s.txt; sourceTree = "<group>"; };
@@ -263,6 +264,7 @@
 				2899E5210DE3E06400AC0155 /* BezierGardenViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* BezierGarden-Info.plist */,
+				4D0E02BC127B491900D6F568 /* pdx_cities.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
