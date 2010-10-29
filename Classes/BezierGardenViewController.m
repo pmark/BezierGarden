@@ -37,14 +37,20 @@
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     self.view = sm3dar.view;
 
-    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
     
+    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
+
 //    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_oregon.txt"] autorelease];
 //    CLLocation *centerOfOregon = [[[CLLocation alloc] initWithLatitude:46.065608 longitude:-125.496826] autorelease];
 //    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:centerOfOregon] autorelease];
 //    [sm3dar setCurrentLocation:centerOfOregon];
+
+//    CLLocation *mtHood = [[[CLLocation alloc] initWithLatitude:45.53806 longitude:-121.56722] autorelease];
+//    [sm3dar setCurrentLocation:mtHood];
+//    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:mtHood] autorelease];
+
     
-    [self addDotAtX:0 Y:0 Z:-80];
+    [self addGridAtX:0 Y:0 Z:-80];
     
     NSLog(@"[BGVC] Remember to undisable location services for real positioning.");
     
@@ -54,7 +60,7 @@
 {
 }
 
-- (void) addDotAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z
+- (void) addGridAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z
 {
     // Create point.
     SM3DAR_Fixture *p = [[SM3DAR_Fixture alloc] init];
@@ -65,12 +71,12 @@
     
     p.worldPoint = coord;
 
-    GridView *dotView = [[GridView alloc] init];
+    GridView *gridView = [[GridView alloc] init];
 
     // Give the point a view.
-    dotView.point = p;
-    p.view = dotView;
-    [dotView release];
+    gridView.point = p;
+    p.view = gridView;
+    [gridView release];
     
     // Add point to 3DAR scene.
     [sm3dar addPointOfInterest:p];
@@ -141,7 +147,7 @@
     // Load elevation grid from bundled data file.
 //    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid.txt"] autorelease];
 //
-//    [self addDotAtX:0 Y:0 Z:-100];
+//    [self addGridAtX:0 Y:0 Z:-100];
 
     
 }

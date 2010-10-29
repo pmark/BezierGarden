@@ -312,7 +312,7 @@
         }
         
         // Move meridian points east.
-        NSLog(@"Moving east: %.0f deg", lonSegLenDegrees);
+        NSLog(@"Moving east: %.3f deg", lonSegLenDegrees);
         
 		northPoint = [self locationEastOf:northPoint byDegrees:lonSegLenDegrees];        
 		southPoint = [self locationEastOf:southPoint byDegrees:lonSegLenDegrees];        
