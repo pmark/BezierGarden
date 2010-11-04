@@ -64,11 +64,11 @@
     glDisable(GL_LIGHTING);
     glDisable(GL_TEXTURE_2D);
     
-    glLineWidth(3.0);
+    glLineWidth(2.0);
     glVertexPointer(3, GL_FLOAT, stride, lines);
     glDrawArrays(GL_LINE_LOOP, 0, sizeof(lines) / stride);
 
-    [self drawAxes];
+    //[self drawAxes];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "BezierGardenViewController.h"
 #import "GridView.h"
 #import "NSDictionary+BSJSONAdditions.h"
+#import "PDX911.h"
 
 #define MAX_CAMERA_ALTITUDE_METERS 3000.0
 
@@ -40,6 +41,10 @@
 
     
     self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
+    
+    CLLocation *theOffice = [[[CLLocation alloc] initWithLatitude:45.523563 longitude:-122.675099] autorelease];
+    [sm3dar setCurrentLocation:theOffice];
+    
 
 //    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_oregon.txt"] autorelease];
 //    CLLocation *centerOfOregon = [[[CLLocation alloc] initWithLatitude:46.065608 longitude:-125.496826] autorelease];
@@ -91,20 +96,35 @@
 
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];    
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];   
+    
+    PDX911 *incidents = [[PDX911 alloc] init];
+    [incidents parseIncidents];
+    [incidents release];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //[sm3dar startCamera];    
+}
+
+- (void)didReceiveMemoryWarning 
+{
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
+    NSLog(@"[BGVC] didReceiveMemoryWarning");
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    NSLog(@"[BGVC] viewDidUnload");
 }
 
 

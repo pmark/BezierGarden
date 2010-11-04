@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">
+	<Document>
+		<name>911 Incidents</name>
+		<open>1</open>
+		<description>Recent 911 dispatch incidents in Portland, Oregon</description>
+
+		<Style id="default">
+			<LabelStyle>
+				<color>01ffffff</color>
+			</LabelStyle>
+		</Style>
+		<Style id="police">
+			<IconStyle>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/police.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<color>01ffffff</color>
+			</LabelStyle>
+		</Style>
+		<Style id="medical">
+			<IconStyle>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/hospitals.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<color>01ffffff</color>
+			</LabelStyle>
+		</Style>
+		<Style id="fire">
+			<IconStyle>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<color>01ffffff</color>
+			</LabelStyle>
+		</Style>
+
+		
+				<Placemark>
+					<name>INJURY ACCIDENT at 2200-2300 SE ANKENY ST</name>
+					<description>
+						INJURY ACCIDENT at 2200-2300 SE ANKENY ST [Portland Police #PP1011031888]
+
+						Wednesday, November 3, 2010 6:01 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.643471,45.522162</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ANIMAL PROBLEM at SW DICKINSON CT/SW DICKINSON LN</name>
+					<description>
+						ANIMAL PROBLEM at SW DICKINSON CT/SW DICKINSON LN [Portland Police #PP1011031887]
+
+						Wednesday, November 3, 2010 5:58 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.698992,45.439152</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>GRASS/BARKDUST/TREE FIRE at 2958 SE 118 AV</name>
+					<description>
+						GRASS/BARKDUST/TREE FIRE at 2958 SE 118 AV [Portland Fire #RP1011031873]
+
+						Wednesday, November 3, 2010 5:53 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.542191,45.500351</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DUMPSTER/GARBAGE CAN/TRASH at SW 5 AV/SW SALMON ST</name>
+					<description>
+						DUMPSTER/GARBAGE CAN/TRASH at SW 5 AV/SW SALMON ST [Portland Fire #RP1011031845]
+
+						Wednesday, November 3, 2010 5:42 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678665,45.516802</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at SW 5 AV/SW SALMON ST</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at SW 5 AV/SW SALMON ST [Portland Police #PP1011031842]
+
+						Wednesday, November 3, 2010 5:42 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678665,45.516802</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at E POWELL BV/NE VICTORY AV</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at E POWELL BV/NE VICTORY AV [Gresham Police #PG1011031840]
+
+						Wednesday, November 3, 2010 5:41 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.415995,45.497975</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 700-800 SW 6 AV</name>
+					<description>
+						DISTURBANCE at 700-800 SW 6 AV [Portland Police #PP1011031837]
+
+						Wednesday, November 3, 2010 5:40 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678772,45.519003</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>UNK INJURY ACCIDENT at SE 5 ST/S BUXTON RD</name>
+					<description>
+						UNK INJURY ACCIDENT at SE 5 ST/S BUXTON RD [Troutdale Police #PT1011031831]
+
+						Wednesday, November 3, 2010 5:33 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.388368,45.537872</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>SUSPICIOUS SUBJ, VEH, CIRCUMST at 16100-16200 NE GLISAN ST</name>
+					<description>
+						SUSPICIOUS SUBJ, VEH, CIRCUMST at 16100-16200 NE GLISAN ST [Gresham Police #PG1011031827]
+
+						Wednesday, November 3, 2010 5:31 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.496811,45.526421</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at NB I5 AT N AINSWORTH ST</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at NB I5 AT N AINSWORTH ST [Portland Police #PP1011031812]
+
+						Wednesday, November 3, 2010 5:25 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678500,45.566391</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSAULT at NW 10 AV/NW GLISAN ST</name>
+					<description>
+						ASSAULT at NW 10 AV/NW GLISAN ST [Portland Police #PP1011031792]
+
+						Wednesday, November 3, 2010 5:19 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.681235,45.526541</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at NB I5 SO MP304 (GOING ST)</name>
+					<description>
+						WELFARE CHECK at NB I5 SO MP304 (GOING ST) [Portland Police #PP1011031775]
+
+						Wednesday, November 3, 2010 5:14 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678519,45.555295</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>UNK INJURY ACCIDENT at NB I405 AT EX1D (SUNSET HY)</name>
+					<description>
+						UNK INJURY ACCIDENT at NB I405 AT EX1D (SUNSET HY) [Portland Police #PP1011031769]
+
+						Wednesday, November 3, 2010 5:12 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.687698,45.510336</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRIMET INCIDENT at 0-100 SW 1 AV</name>
+					<description>
+						TRIMET INCIDENT at 0-100 SW 1 AV [Portland Police #PP1011031760]
+
+						Wednesday, November 3, 2010 5:07 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.671074,45.522270</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at NE 42 AV/NE BROADWAY</name>
+					<description>
+						DISTURBANCE at NE 42 AV/NE BROADWAY [Portland Police #PP1011031759]
+
+						Wednesday, November 3, 2010 5:05 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.619908,45.535137</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 600-700 SE 26 AV</name>
+					<description>
+						DISTURBANCE at 600-700 SE 26 AV [Portland Police #PP1011031754]
+
+						Wednesday, November 3, 2010 5:03 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.639244,45.518043</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HAZARDOUS CONDITION at SB I205 SO NE AIRPORT WY</name>
+					<description>
+						HAZARDOUS CONDITION at SB I205 SO NE AIRPORT WY [Portland Police #PP1011031752]
+
+						Wednesday, November 3, 2010 5:03 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.553163,45.568669</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 4900-5000 SW 56 AV</name>
+					<description>
+						WELFARE CHECK at 4900-5000 SW 56 AV [Portland Police #PP1011031745]
+
+						Wednesday, November 3, 2010 5:00 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.734836,45.488001</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FLAGDOWN at NW 6 AV/NW COUCH ST</name>
+					<description>
+						FLAGDOWN at NW 6 AV/NW COUCH ST [Portland Police #PP1011031736]
+
+						Wednesday, November 3, 2010 4:52 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.676449,45.523776</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at N DENVER AV/N WILLAMETTE BV</name>
+					<description>
+						WELFARE CHECK at N DENVER AV/N WILLAMETTE BV [Portland Police #PP1011031727]
+
+						Wednesday, November 3, 2010 4:49 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.687408,45.561970</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 19800-19900 NE FLANDERS ST</name>
+					<description>
+						WELFARE CHECK at 19800-19900 NE FLANDERS ST [Gresham Police #PG1011031721]
+
+						Wednesday, November 3, 2010 4:47 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.458450,45.525833</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRAFFIC ACC W/PED OR BIKE at SE 115 AV/SE POWELL BV</name>
+					<description>
+						TRAFFIC ACC W/PED OR BIKE at SE 115 AV/SE POWELL BV [Portland Fire #RP1011031717]
+
+						Wednesday, November 3, 2010 4:44 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.545415,45.496747</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 5700-5800 NE PRESCOTT ST</name>
+					<description>
+						DISTURBANCE at 5700-5800 NE PRESCOTT ST [Portland Police #PP1011031710]
+
+						Wednesday, November 3, 2010 4:42 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.603698,45.555565</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HIT/RUN at 3600-3700 NE 78 AV</name>
+					<description>
+						HIT/RUN at 3600-3700 NE 78 AV [Portland Police #PP1011031696]
+
+						Wednesday, November 3, 2010 4:39 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.582788,45.549097</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>UNK INJURY ACCIDENT at SE 42 AV/SE BYBEE BV</name>
+					<description>
+						UNK INJURY ACCIDENT at SE 42 AV/SE BYBEE BV [Portland Police #PP1011031694]
+
+						Wednesday, November 3, 2010 4:39 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.619507,45.472578</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 9000-9100 NE MARTIN LUTHER KING BV</name>
+					<description>
+						DISTURBANCE at 9000-9100 NE MARTIN LUTHER KING BV [Portland Police #PP1011031687]
+
+						Wednesday, November 3, 2010 4:34 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.664902,45.588238</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 1500-1600 NE BROADWAY</name>
+					<description>
+						DISTURBANCE at 1500-1600 NE BROADWAY [Portland Police #PP1011031684]
+
+						Wednesday, November 3, 2010 4:34 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.650255,45.534947</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at SW 6 AV/SW SALMON ST</name>
+					<description>
+						DISTURBANCE at SW 6 AV/SW SALMON ST [Portland Police #PP1011031676]
+
+						Wednesday, November 3, 2010 4:31 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.679687,45.517075</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 1700-1800 NE LIBERTY ST</name>
+					<description>
+						DISTURBANCE at 1700-1800 NE LIBERTY ST [Portland Police #PP1011031674]
+
+						Wednesday, November 3, 2010 4:28 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.647644,45.570493</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>AREA CHECK at 2000-2100 SE STARK ST</name>
+					<description>
+						AREA CHECK at 2000-2100 SE STARK ST [Portland Police #PP1011031670]
+
+						Wednesday, November 3, 2010 4:26 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.645526,45.519321</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 6400-6500 NE KILLINGSWORTH ST</name>
+					<description>
+						DISTURBANCE at 6400-6500 NE KILLINGSWORTH ST [Portland Police #PP1011031645]
+
+						Wednesday, November 3, 2010 4:16 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.597250,45.562828</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at NW SAUVIE ISLAND BR/NW ST HELENS RD</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at NW SAUVIE ISLAND BR/NW ST HELENS RD [Multnomah County Sherriff #PM1011031635]
+
+						Wednesday, November 3, 2010 4:11 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.818498,45.626582</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at NE 125 PL/NE SANDY BV</name>
+					<description>
+						DISTURBANCE at NE 125 PL/NE SANDY BV [Portland Police #PP1011031626]
+
+						Wednesday, November 3, 2010 4:09 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.533204,45.556415</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>SUSPICIOUS SUBJ, VEH, CIRCUMST at 17000-17100 SE STARK ST</name>
+					<description>
+						SUSPICIOUS SUBJ, VEH, CIRCUMST at 17000-17100 SE STARK ST [Gresham Police #PG1011031618]
+
+						Wednesday, November 3, 2010 4:05 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.487816,45.519233</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSAULT at 1100-1200 NW WALLULA AV</name>
+					<description>
+						ASSAULT at 1100-1200 NW WALLULA AV [Gresham Police #PG1011031604]
+
+						Wednesday, November 3, 2010 4:01 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.445086,45.505345</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 15800-15900 SE DIVISION ST</name>
+					<description>
+						WELFARE CHECK at 15800-15900 SE DIVISION ST [Portland Police #PP1011031597]
+
+						Wednesday, November 3, 2010 3:57 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.500094,45.504374</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>NON INJURY ACCIDENT at NE 122 AV/NE HALSEY ST</name>
+					<description>
+						NON INJURY ACCIDENT at NE 122 AV/NE HALSEY ST [Portland Police #PP1011031594]
+
+						Wednesday, November 3, 2010 3:56 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.537636,45.533573</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRAFFIC ACC/1ST RESP at NB I405 AT 6 AV EXIT</name>
+					<description>
+						TRAFFIC ACC/1ST RESP at NB I405 AT 6 AV EXIT [Portland Fire #RP1011031590]
+
+						Wednesday, November 3, 2010 3:54 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.683013,45.507061</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>INJURY ACCIDENT at NB I405 AT 6 AV EXIT</name>
+					<description>
+						INJURY ACCIDENT at NB I405 AT 6 AV EXIT [Portland Police #PP1011031589]
+
+						Wednesday, November 3, 2010 3:54 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.683013,45.507061</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>INCOMPLETE CALL at 1800-1900 NE 116 PL</name>
+					<description>
+						INCOMPLETE CALL at 1800-1900 NE 116 PL [Portland Police #PP1011031586]
+
+						Wednesday, November 3, 2010 3:53 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.543280,45.535799</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HIT/RUN at SW CERISE WY/SW STELLA WY</name>
+					<description>
+						HIT/RUN at SW CERISE WY/SW STELLA WY [Troutdale Police #PT1011031578]
+
+						Wednesday, November 3, 2010 3:50 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.408433,45.529018</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at SW MORRISON ST/SW NAITO PY</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at SW MORRISON ST/SW NAITO PY [Portland Police #PP1011031573]
+
+						Wednesday, November 3, 2010 3:49 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.672607,45.517480</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at SE 212 AV/NW BURNSIDE RD</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at SE 212 AV/NW BURNSIDE RD [Gresham Police #PG1011031557]
+
+						Wednesday, November 3, 2010 3:43 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.444843,45.512677</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FLAGDOWN at NE DEKUM ST/NE MARTIN LUTHER KING BV</name>
+					<description>
+						FLAGDOWN at NE DEKUM ST/NE MARTIN LUTHER KING BV [Portland Police #PP1011031539]
+
+						Wednesday, November 3, 2010 3:38 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.661358,45.571787</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>NON INJURY ACCIDENT at NB I5 AT LOMBARD ST EXIT EB</name>
+					<description>
+						NON INJURY ACCIDENT at NB I5 AT LOMBARD ST EXIT EB [Portland Police #PP1011031533]
+
+						Wednesday, November 3, 2010 3:37 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.678552,45.574752</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRIMET INCIDENT at N INTERSTATE AV/N LOMBARD ST</name>
+					<description>
+						TRIMET INCIDENT at N INTERSTATE AV/N LOMBARD ST [Portland Police #PP1011031525]
+
+						Wednesday, November 3, 2010 3:35 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.682088,45.577128</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 4500-4600 SE 122 AV</name>
+					<description>
+						WELFARE CHECK at 4500-4600 SE 122 AV [Portland Police #PP1011031524]
+
+						Wednesday, November 3, 2010 3:34 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.537579,45.489399</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DRUNK SUBJECT at 02 CONCOURSE C PIA</name>
+					<description>
+						DRUNK SUBJECT at 02 CONCOURSE C PIA [Airport Police #PA1011031523]
+
+						Wednesday, November 3, 2010 3:34 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.598806,45.589974</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>UNWANTED PERSON at 800-900 SE 223 AV</name>
+					<description>
+						UNWANTED PERSON at 800-900 SE 223 AV [Gresham Police #PG1011031512]
+
+						Wednesday, November 3, 2010 3:30 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.433923,45.516617</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRAFFIC ACC/1ST RESP at NE 108 AV/NE GLISAN ST</name>
+					<description>
+						TRAFFIC ACC/1ST RESP at NE 108 AV/NE GLISAN ST [Portland Fire #RP1011031510]
+
+						Wednesday, November 3, 2010 3:30 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.551502,45.526280</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>INJURY ACCIDENT at NE 108 AV/NE GLISAN ST</name>
+					<description>
+						INJURY ACCIDENT at NE 108 AV/NE GLISAN ST [Portland Police #PP1011031509]
+
+						Wednesday, November 3, 2010 3:30 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.551502,45.526280</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DRUNK SUBJECT at SW 2 AV/W BURNSIDE ST</name>
+					<description>
+						DRUNK SUBJECT at SW 2 AV/W BURNSIDE ST [Portland Police #PP1011031508]
+
+						Wednesday, November 3, 2010 3:30 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.672366,45.523134</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 7400-7500 N NEWMAN AV</name>
+					<description>
+						DISTURBANCE at 7400-7500 N NEWMAN AV [Portland Police #PP1011031505]
+
+						Wednesday, November 3, 2010 3:29 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.715483,45.577848</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at SE 112 AV/SE STARK ST</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at SE 112 AV/SE STARK ST [Portland Police #PP1011031503]
+
+						Wednesday, November 3, 2010 3:29 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.547988,45.518969</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 23800-23900 NE SHAMROCK DR</name>
+					<description>
+						WELFARE CHECK at 23800-23900 NE SHAMROCK DR [Multnomah County Sherriff #PM1011031490]
+
+						Wednesday, November 3, 2010 3:24 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.417900,45.530618</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FIGHT at SE 122 AV/SE DIVISION ST</name>
+					<description>
+						FIGHT at SE 122 AV/SE DIVISION ST [Portland Police #PP1011031484]
+
+						Wednesday, November 3, 2010 3:21 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.537684,45.504093</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 10300-10400 SE HAROLD ST</name>
+					<description>
+						DISTURBANCE at 10300-10400 SE HAROLD ST [Portland Police #PP1011031477]
+
+						Wednesday, November 3, 2010 3:18 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.556885,45.482586</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at NW 1 AV/NW DAVIS ST</name>
+					<description>
+						WELFARE CHECK at NW 1 AV/NW DAVIS ST [Portland Police #PP1011031474]
+
+						Wednesday, November 3, 2010 3:16 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.671417,45.524579</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>MUTUAL AID at 8982 SE 78 PL</name>
+					<description>
+						MUTUAL AID at 8982 SE 78 PL [Other Fire #RO1011031472]
+
+						Wednesday, November 3, 2010 3:15 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.583415,45.458167</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRIMET INCIDENT at NE 102 AV/E BURNSIDE ST</name>
+					<description>
+						TRIMET INCIDENT at NE 102 AV/E BURNSIDE ST [Portland Police #PP1011031471]
+
+						Wednesday, November 3, 2010 3:15 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.558291,45.522641</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 5800-5900 N LOMBARD ST</name>
+					<description>
+						WELFARE CHECK at 5800-5900 N LOMBARD ST [Portland Police #PP1011031463]
+
+						Wednesday, November 3, 2010 3:12 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.727974,45.583901</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ANIMAL PROBLEM at NE 82 AV/I84 FY</name>
+					<description>
+						ANIMAL PROBLEM at NE 82 AV/I84 FY [Portland Police #PP1011031460]
+
+						Wednesday, November 3, 2010 3:12 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.579022,45.533481</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at NW 15 AV/NW DAVIS ST</name>
+					<description>
+						WELFARE CHECK at NW 15 AV/NW DAVIS ST [Portland Police #PP1011031453]
+
+						Wednesday, November 3, 2010 3:10 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.686124,45.524322</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SE 223 AV/SE STARK ST</name>
+					<description>
+						WELFARE CHECK at SE 223 AV/SE STARK ST [Gresham Police #PG1011031428]
+
+						Wednesday, November 3, 2010 3:00 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.433786,45.519088</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>NATURAL GAS-ODOR/INVESTIGATION at 2933 SW 32 TR</name>
+					<description>
+						NATURAL GAS-ODOR/INVESTIGATION at 2933 SW 32 TR [Gresham Fire #RG1011031426]
+
+						Wednesday, November 3, 2010 2:59 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.462024,45.473950</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRIMET INCIDENT at 8300-8400 N INTERSTATE AV</name>
+					<description>
+						TRIMET INCIDENT at 8300-8400 N INTERSTATE AV [Portland Police #PP1011031411]
+
+						Wednesday, November 3, 2010 2:55 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.685921,45.583669</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>SUSPICIOUS SUBJ, VEH, CIRCUMST at 18000-18100 E BURNSIDE ST</name>
+					<description>
+						SUSPICIOUS SUBJ, VEH, CIRCUMST at 18000-18100 E BURNSIDE ST [Gresham Police #PG1011031397]
+
+						Wednesday, November 3, 2010 2:49 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.477671,45.522009</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>POWER LINE/POLE DOWN/ARCING at NE 188 AV/NE GLISAN ST</name>
+					<description>
+						POWER LINE/POLE DOWN/ARCING at NE 188 AV/NE GLISAN ST [Gresham Fire #RG1011031391]
+
+						Wednesday, November 3, 2010 2:47 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.469969,45.526393</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at N ALBERTA ST/N MICHIGAN AV</name>
+					<description>
+						WELFARE CHECK at N ALBERTA ST/N MICHIGAN AV [Portland Police #PP1011031374]
+
+						Wednesday, November 3, 2010 2:41 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.677033,45.559003</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>POWER LINE/POLE DOWN/ARCING at 3735 N LONGVIEW AV</name>
+					<description>
+						POWER LINE/POLE DOWN/ARCING at 3735 N LONGVIEW AV [Portland Fire #RP1011031370]
+
+						Wednesday, November 3, 2010 2:40 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.683111,45.549831</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSAULT at 4800-4900 NE SANDY BV</name>
+					<description>
+						ASSAULT at 4800-4900 NE SANDY BV [Portland Police #PP1011031364]
+
+						Wednesday, November 3, 2010 2:38 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.613711,45.538759</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FLAGDOWN at NW 2 AV/NW GLISAN ST</name>
+					<description>
+						FLAGDOWN at NW 2 AV/NW GLISAN ST [Portland Police #PP1011031346]
+
+						Wednesday, November 3, 2010 2:30 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.672511,45.526700</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 200-300 S MAIN AV</name>
+					<description>
+						WELFARE CHECK at 200-300 S MAIN AV [Gresham Police #PG1011031334]
+
+						Wednesday, November 3, 2010 2:26 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.430981,45.495811</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HAZARDOUS CONDITION at SE 67 AV/SE CENTER ST</name>
+					<description>
+						HAZARDOUS CONDITION at SE 67 AV/SE CENTER ST [Portland Police #PP1011031329]
+
+						Wednesday, November 3, 2010 2:25 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.594270,45.493892</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SW 3 AV/SW ANKENY ST</name>
+					<description>
+						WELFARE CHECK at SW 3 AV/SW ANKENY ST [Portland Police #PP1011031324]
+
+						Wednesday, November 3, 2010 2:21 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.673344,45.522550</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRIMET INCIDENT at 1700-1800 SW YAMHILL ST</name>
+					<description>
+						TRIMET INCIDENT at 1700-1800 SW YAMHILL ST [Portland Police #PP1011031318]
+
+						Wednesday, November 3, 2010 2:19 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.689691,45.521182</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRAFFIC ACC/1ST RESP at NE 122 AV/E BURNSIDE ST</name>
+					<description>
+						TRAFFIC ACC/1ST RESP at NE 122 AV/E BURNSIDE ST [Portland Fire #RP1011031314]
+
+						Wednesday, November 3, 2010 2:17 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.537767,45.522494</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>UNK INJURY ACCIDENT at NE 122 AV/E BURNSIDE ST</name>
+					<description>
+						UNK INJURY ACCIDENT at NE 122 AV/E BURNSIDE ST [Portland Police #PP1011031303]
+
+						Wednesday, November 3, 2010 2:14 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.537767,45.522494</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>NON INJURY ACCIDENT at SE 9 AV/SE STARK ST</name>
+					<description>
+						NON INJURY ACCIDENT at SE 9 AV/SE STARK ST [Portland Police #PP1011031297]
+
+						Wednesday, November 3, 2010 2:11 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.656673,45.519353</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 16200-16300 NE EVERETT CT</name>
+					<description>
+						DISTURBANCE at 16200-16300 NE EVERETT CT [Gresham Police #PG1011031295]
+
+						Wednesday, November 3, 2010 2:11 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.496253,45.525209</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at NW 6 AV/NW DAVIS ST</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at NW 6 AV/NW DAVIS ST [Portland Police #PP1011031290]
+
+						Wednesday, November 3, 2010 2:09 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.676471,45.524489</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FIGHT at 4800-4900 NE 74 AV</name>
+					<description>
+						FIGHT at 4800-4900 NE 74 AV [Portland Police #PP1011031284]
+
+						Wednesday, November 3, 2010 2:07 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.586640,45.557930</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HAZARDOUS CONDITION at NB INTERSTATE BR AT SOUTHEND</name>
+					<description>
+						HAZARDOUS CONDITION at NB INTERSTATE BR AT SOUTHEND [Portland Police #PP1011031277]
+
+						Wednesday, November 3, 2010 2:05 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.677111,45.614608</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SW 3 AV/SW ANKENY ST</name>
+					<description>
+						WELFARE CHECK at SW 3 AV/SW ANKENY ST [Portland Police #PP1011031272]
+
+						Wednesday, November 3, 2010 2:03 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.673344,45.522550</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>TRAFFIC ACC W/PED OR BIKE at NW 21 AV/NW MARSHALL ST</name>
+					<description>
+						TRAFFIC ACC W/PED OR BIKE at NW 21 AV/NW MARSHALL ST [Portland Fire #RP1011031262]
+
+						Wednesday, November 3, 2010 1:58 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.694579,45.530577</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>INJURY ACCIDENT at NW 21 AV/NW MARSHALL ST</name>
+					<description>
+						INJURY ACCIDENT at NW 21 AV/NW MARSHALL ST [Portland Police #PP1011031261]
+
+						Wednesday, November 3, 2010 1:58 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.694579,45.530577</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SW 3 AV/SW PINE ST</name>
+					<description>
+						WELFARE CHECK at SW 3 AV/SW PINE ST [Portland Police #PP1011031253]
+
+						Wednesday, November 3, 2010 1:57 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.673757,45.521591</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at 500-600 SE MORRISON ST</name>
+					<description>
+						WELFARE CHECK at 500-600 SE MORRISON ST [Portland Police #PP1011031239]
+
+						Wednesday, November 3, 2010 1:48 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.660559,45.517222</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 6600-6700 NE GLISAN ST</name>
+					<description>
+						DISTURBANCE at 6600-6700 NE GLISAN ST [Portland Police #PP1011031232]
+
+						Wednesday, November 3, 2010 1:45 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.595380,45.526564</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ASSIST CITIZEN/OTHER AGENCY at 3000-3100 SE 145 AV</name>
+					<description>
+						ASSIST CITIZEN/OTHER AGENCY at 3000-3100 SE 145 AV [Portland Police #PP1011031218]
+
+						Wednesday, November 3, 2010 1:41 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.513829,45.500293</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SB I205 BR AT MIDSPAN</name>
+					<description>
+						WELFARE CHECK at SB I205 BR AT MIDSPAN [Portland Police #PP1011031215]
+
+						Wednesday, November 3, 2010 1:40 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.543739,45.582860</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>DISTURBANCE at 3300-3400 SE FRANCIS ST</name>
+					<description>
+						DISTURBANCE at 3300-3400 SE FRANCIS ST [Portland Police #PP1011031204]
+
+						Wednesday, November 3, 2010 1:36 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.630465,45.494776</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>HAZARDOUS CONDITION at WB FREMONT BR AT MIDSPAN</name>
+					<description>
+						HAZARDOUS CONDITION at WB FREMONT BR AT MIDSPAN [Portland Police #PP1011031199]
+
+						Wednesday, November 3, 2010 1:35 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.682897,45.538096</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at SB GLEN JACKSON BR AT SOUTHEND</name>
+					<description>
+						WELFARE CHECK at SB GLEN JACKSON BR AT SOUTHEND [Portland Police #PP1011031194]
+
+						Wednesday, November 3, 2010 1:33 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.544906,45.576521</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>WELFARE CHECK at NW 1 AV/NW DAVIS ST</name>
+					<description>
+						WELFARE CHECK at NW 1 AV/NW DAVIS ST [Portland Police #PP1011031193]
+
+						Wednesday, November 3, 2010 1:33 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.671417,45.524579</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>FLAGDOWN at 400-500 NE EMERSON ST</name>
+					<description>
+						FLAGDOWN at 400-500 NE EMERSON ST [Portland Police #PP1011031191]
+
+						Wednesday, November 3, 2010 1:33 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.660868,45.561900</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>POWER LINE/POLE DOWN/ARCING at NE 148 AV/NE HALSEY ST</name>
+					<description>
+						POWER LINE/POLE DOWN/ARCING at NE 148 AV/NE HALSEY ST [Portland Fire #RP1011031183]
+
+						Wednesday, November 3, 2010 1:30 PM
+					</description>
+					
+							<styleUrl>#fire</styleUrl>
+						
+					<Point>
+						<coordinates>-122.510489,45.533659</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>ANIMAL PROBLEM at NE 32 PL/NE ALAMEDA ST</name>
+					<description>
+						ANIMAL PROBLEM at NE 32 PL/NE ALAMEDA ST [Portland Police #PP1011031179]
+
+						Wednesday, November 3, 2010 1:27 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.632667,45.549146</coordinates>
+					</Point>
+				</Placemark>
+			
+				<Placemark>
+					<name>AREA CHECK at 1600-1700 NE BURNSIDE RD</name>
+					<description>
+						AREA CHECK at 1600-1700 NE BURNSIDE RD [Gresham Police #PG1011031171]
+
+						Wednesday, November 3, 2010 1:24 PM
+					</description>
+					
+							<styleUrl>#police</styleUrl>
+						
+					<Point>
+						<coordinates>-122.415337,45.502845</coordinates>
+					</Point>
+				</Placemark>
+			
+	</Document>
+</kml>
