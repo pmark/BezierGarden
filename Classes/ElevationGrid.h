@@ -14,6 +14,7 @@
 
 #define ELEVATION_PATH_SAMPLES 100
 #define ELEVATION_LINE_LENGTH 25000
+#define GRID_CELL_SIZE ELEVATION_LINE_LENGTH/ELEVATION_PATH_SAMPLES
 
 //#define ELEVATION_PATH_SAMPLES 150
 //#define ELEVATION_LINE_LENGTH 660000
@@ -41,5 +42,6 @@ Coord3D worldCoordinateData[ELEVATION_PATH_SAMPLES][ELEVATION_PATH_SAMPLES];
 - (Coord3D *) worldCoordinates;
 - (NSString *) dataFilePath;
 - (void) loadDataFile:(NSString*)filePath;
+- (CGFloat) elevationAtLocation:(CLLocation*)referenceLocation;
 
 @end

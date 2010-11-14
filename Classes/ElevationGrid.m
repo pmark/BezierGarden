@@ -573,4 +573,59 @@
     
 }
 
+// Given a point within this elevation grid's bounds,
+// find which 2D array index contains the point
+// and return the elevation value at that index.
+- (CGFloat) elevationAtLocation:(CLLocation*)referenceLocation
+{//Elevation at location equals elevation of nearest elevation grid array value
+ // Define distance from origin variables in meters
+    CLLocationDistance xWorldCoordDistanceFromOrigin, yWorldCoordDistanceFromOrigin;
+    // Compute variables based on referenceLocation and ElevationGrid origin
+    CLLocation *xDummy = [[CLLocation alloc] initWithLatitude:gridOrigin.coordinate.latitude longitude:referenceLocation.coordinate.longitude];
+    CLLocation *yDummy = [[CLLocation alloc] initWithLatitude:referenceLocation.coordinate.latitude longitude:gridOrigin.coordinate.longitude];    
+    
+    xWorldCoordDistanceFromOrigin = [xDummy distanceFromLocation:gridOrigin];
+    yWorldCoordDistanceFromOrigin = [yDummy distanceFromLocation:gridOrigin];
+    
+    int yIndexOffset = yWorldCoordDistanceFromOrigin/GRID_CELL_SIZE;
+    int xIndexOffset = xWorldCoordDistanceFromOrigin/GRID_CELL_SIZE;
+    
+    int gridOriginIndex = ELEVATION_PATH_SAMPLES/2;
+    
+    BOOL originIsSouthOfReference = (gridOrigin.coordinate.latitude < referenceLocation.coordinate.latitude);
+    
+    if (originIsSouthOfReference) 
+    {
+        yIndexOffset *= -1;
+    }
+    
+    // TO DO:Resolve -180,180 problem
+    BOOL originIsWestOfReference = (gridOrigin.coordinate.longitude < referenceLocation.coordinate.longitude);
+    
+    if (originIsWestOfReference) 
+    {
+        xIndexOffset *= -1;
+    }
+    
+    int x = gridOriginIndex + xIndexOffset;
+    int y = gridOriginIndex + yIndexOffset;
+    
+    
+    Coord3D c = worldCoordinateData[x][y]; 
+     
+    
+ //Round user world coordinates to whole number
+ //Do that thing in C where you take a number at say "Hey Number! What the fuck do you think you're doing carrying 
+ //those fairy-ass decimal values around with you? Everyone knows they don't matter! Get with the picture!!"
+ //Oh, wait - that java code I stole has a round function at the end. Maybe if I figure out how to change that to 
+ //what I need in java, than I can make Mark translate it into Obj-C when he get's back. But wait! I can see him checking 
+ //out across the street! It might be too late! If only I hadn't spent so much time on this narrative.
+
+    
+    
+    return c.z;
+}
+
+
+
 @end

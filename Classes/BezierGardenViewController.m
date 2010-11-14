@@ -10,6 +10,7 @@
 #import "GridView.h"
 #import "NSDictionary+BSJSONAdditions.h"
 #import "PDX911.h"
+#import "DotView.h"
 
 #define MAX_CAMERA_ALTITUDE_METERS 3000.0
 
@@ -37,30 +38,7 @@
     sm3dar = [SM3DAR_Controller sharedController];
     sm3dar.delegate = self;
     sm3dar.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-    self.view = sm3dar.view;
-
-    
-    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
-    
-    CLLocation *theOffice = [[[CLLocation alloc] initWithLatitude:45.523563 longitude:-122.675099] autorelease];
-    [sm3dar setCurrentLocation:theOffice];
-    
-
-//    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_oregon.txt"] autorelease];
-//    CLLocation *centerOfOregon = [[[CLLocation alloc] initWithLatitude:46.065608 longitude:-125.496826] autorelease];
-//    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:centerOfOregon] autorelease];
-//    [sm3dar setCurrentLocation:centerOfOregon];
-
-//    CLLocation *mtHood = [[[CLLocation alloc] initWithLatitude:45.53806 longitude:-121.56722] autorelease];
-//    [sm3dar setCurrentLocation:mtHood];
-//    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:mtHood] autorelease];
-
-    
-    [self addGridAtX:0 Y:0 Z:-80];
-    
-    NSLog(@"[BGVC] Remember to undisable location services for real positioning.");
-    
-    [self addCityNamePoints];
+    self.view = sm3dar.view;    
 }
 
 - (void) sm3darViewDidLoad
@@ -85,6 +63,9 @@
     p.view = gridView;
     [gridView release];
     
+    
+    NSLog(@"Adding grid at %.1f, %.1f, %.1f", x, y, z);
+    
     // Add point to 3DAR scene.
     [sm3dar addPointOfInterest:p];
     [p release];
@@ -93,16 +74,21 @@
 - (void) loadPointsOfInterest
 {
     NSLog(@"loadPointsOfInterest");
-
+    
+    [self addElevationGridPoint];
+    
+    [self addCityNamePoints];
+    
+    [self setCameraAltitude:1.8];
+    
+//    [self add911IncidentPoints];
+    
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];   
     
-    PDX911 *incidents = [[PDX911 alloc] init];
-    [incidents parseIncidents];
-    [incidents release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -155,7 +141,7 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    [manager stopUpdatingLocation];
+//    [manager stopUpdatingLocation];
 
     NSLog(@"[BGVC] New location: %@", newLocation);
     
@@ -175,6 +161,39 @@
 
 
 #pragma mark -
+
+- (void) addElevationGridPoint
+{
+    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_25km_100s.txt"] autorelease];
+    
+    CLLocation *theOffice = [[[CLLocation alloc] initWithLatitude:45.523563 longitude:-122.675099] autorelease];
+    //    [sm3dar setCurrentLocation:theOffice];
+    
+    
+    //    self.elevationGrid = [[[ElevationGrid alloc] initFromFile:@"elevation_grid_oregon.txt"] autorelease];
+    //    CLLocation *centerOfOregon = [[[CLLocation alloc] initWithLatitude:46.065608 longitude:-125.496826] autorelease];
+    //    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:centerOfOregon] autorelease];
+    //    [sm3dar setCurrentLocation:centerOfOregon];
+    
+    //    CLLocation *mtHood = [[[CLLocation alloc] initWithLatitude:45.53806 longitude:-121.56722] autorelease];
+    //    [sm3dar setCurrentLocation:mtHood];
+    //    self.elevationGrid = [[[ElevationGrid alloc] initAroundLocation:mtHood] autorelease];
+
+    Coord3D gridCoord = [SM3DAR_Controller worldCoordinateFor:theOffice];
+    
+    NSInteger gridIndex = ELEVATION_PATH_SAMPLES / 2;
+    Coord3D gridOriginElevationPoint = worldCoordinateData[gridIndex][gridIndex];
+    CGFloat gridOriginZ = gridOriginElevationPoint.z;
+    
+    [self addGridAtX:gridCoord.x Y:gridCoord.y Z:gridOriginZ];    
+}
+
+- (void) add911IncidentPoints
+{
+    PDX911 *incidents = [[PDX911 alloc] init];
+    [incidents parseIncidents];
+    [incidents release];    
+}
 
 - (void) addCityNamePoints
 {
@@ -203,6 +222,8 @@
         
         NSMutableArray *allPoints = [NSMutableArray arrayWithCapacity:[cities count]];
         
+        sm3dar.markerViewClass = [DotView class];
+        
         for (NSDictionary *city in cities)
         {
             NSString *poiTitle = [city objectForKey:@"name"];
@@ -218,18 +239,26 @@
                                            altitude:0 
                                               title:poiTitle 
                                            subtitle:poiSubtitle 
-                                    markerViewClass:[SM3DAR_IconMarkerView class] 
+                                    markerViewClass:nil
+                                    //markerViewClass:[SM3DAR_IconMarkerView class] 
                                          properties:nil];
             
             [allPoints addObject:point];
             [point release];            
         }
-
         
         [sm3dar addPointsOfInterest:allPoints];
         
     }
 	    
+}
+
+- (void) setCameraAltitude:(CGFloat)metersAboveGround
+{
+    CGFloat elevationAtCameraLocation = [elevationGrid elevationAtLocation:sm3dar.currentLocation];
+
+    sm3dar.cameraAltitudeMeters = (elevationAtCameraLocation + metersAboveGround) * (2*GRID_SCALE_VERTICAL);
+    
 }
 
 

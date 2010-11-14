@@ -22,6 +22,9 @@
 - (void) screenTouched:(CGPoint)p;
 - (void) addGridAtX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z;
 - (void) addCityNamePoints;
+- (void) add911IncidentPoints;
+- (void) addElevationGridPoint;
+- (void) setCameraAltitude:(CGFloat)metersAboveGround;
 
 @end
 
